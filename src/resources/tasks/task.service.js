@@ -73,8 +73,8 @@ async function deleteAllTaskInBoard(boardId) {
 async function clearUserInTasks(userId) {
   taskRepo.forEach((board) => {
     board.forEach((task) => {
-      // eslint-disable-next-line no-param-reassign
-      if (task.userId === userId) task.userId = null;
+      const tempTask = task;
+      if (tempTask.userId === userId) tempTask.userId = null;
     })
   })
 }
