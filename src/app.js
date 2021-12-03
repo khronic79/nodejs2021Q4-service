@@ -11,9 +11,11 @@ const taskRouter = require('./resources/tasks/task.router');
 
 const app = new Koa();
 const router = new Router();
-const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
+const spec = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
-router.get('/doc', koaSwagger({ routePrefix: false, swaggerOptions: { swaggerDocument } }));
+router.use(koaSwagger({ swaggerOptions: { spec } }));
+
+router.get('/doc', koaSwagger({ routePrefix: false, swaggerOptions: { spec } }));
 
 router.get('/', (ctx, next) => {
   ctx.body = 'Service is running!';
@@ -24,7 +26,6 @@ app
   .use(bodyParser())
   .use(json())
   .use(router.routes())
-  .use(router.allowedMethods())
   .use(userRouter.routes())
   .use(boardRouter.routes())
   .use(taskRouter.routes());
