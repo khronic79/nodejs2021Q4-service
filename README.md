@@ -8,7 +8,7 @@
 ## Downloading
 
 ```
-git clone {repository URL}
+git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task4
 ```
 
 ## Installing NPM modules
@@ -43,13 +43,13 @@ To run only one of all test suites (users, boards or tasks)
 npm test <suite name>
 ```
 
-To run all test with authorization
+To run all test with authorization (!!! NOT FOR THIS VERSION !!!)
 
 ```
 npm run test:auth
 ```
 
-To run only specific test suite with authorization (users, boards or tasks)
+To run only specific test suite with authorization (users, boards or tasks) (!!! NOT FOR THIS VERSION !!!)
 
 ```
 npm run test:auth <suite name>

@@ -9,6 +9,8 @@ const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
 
+// Used KOA instead of EXPRESS
+// EXPRESS WAS UNINSTALLED
 const app = new Koa();
 const router = new Router();
 const spec = YAML.load(path.join(__dirname, '../doc/api.yaml'));
