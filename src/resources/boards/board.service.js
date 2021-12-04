@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const boardRepo = require('./board.memory.repository');
+const columnService = require('../columns/column.service');
 
 async function getAllBoards() {
   const boards = [];
@@ -19,11 +20,12 @@ async function getBoard(boardId) {
 async function createBoard(board) {
   const check = board.title && board.columns && Array.isArray(board.columns);
   if (!check) return Promise.resolve(null);
+  const columns = await columnService.createColumns([], board.columns);
   const id = uuidv4();
   const newRecord = {
     id,
     title: board.title,
-    columns: board.columns,
+    columns,
   }
   boardRepo.set(id, newRecord);
   return Promise.resolve(newRecord);
