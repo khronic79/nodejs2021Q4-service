@@ -6,6 +6,7 @@
     "jest": true,
     "node": true
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2021,
@@ -13,13 +14,22 @@
       "impliedStrict": true
     }
   },
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "settings": {
-    "noInlineConfig": true
+    "noInlineConfig": true,
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
   },
   "extends": [
     "eslint:recommended",
-    "plugin:node/recommended",
+    // "plugin:node/recommended",
     "airbnb-base",
+    "plugin:import/typescript",
     "prettier"
   ],
   "rules": {

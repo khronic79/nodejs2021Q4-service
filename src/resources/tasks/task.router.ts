@@ -1,8 +1,9 @@
-const Router = require('koa-router');
-const Task = require('./task.model');
-const taskService = require("./task.service");
+import { ParameterizedContext } from 'koa';
+import Router from 'koa-router';
+import { TaskModel } from './task.model';
+import { taskService } from "./task.service";
 
-function sendErrorMessage(ctx, errorMessage, status) {
+function sendErrorMessage(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>, errorMessage: string, status: number) {
   ctx.body = {
     errorMessage,
     status
@@ -10,7 +11,7 @@ function sendErrorMessage(ctx, errorMessage, status) {
   ctx.status = status;
 }
 
-const router = new Router();
+export const router = new Router();
 
 router
   .get('/boards/:boardId/tasks', async (ctx) => {
@@ -19,7 +20,7 @@ router
     if (!tasks) {
       sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
     } else {
-      ctx.body = tasks.map(Task.toResponse);
+      ctx.body = tasks.map(TaskModel.toResponse);
       ctx.status = 200;
     }
   })
@@ -29,7 +30,7 @@ router
     if (!task) {
       sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
     } else {
-      ctx.body = Task.toResponse(task);
+      ctx.body = TaskModel.toResponse(task);
       ctx.status = 200;
     }
   })
@@ -40,7 +41,7 @@ router
     if (!newTask) {
       sendErrorMessage(ctx, 'There are issues with inbound data', 400);
     } else {
-      ctx.body = Task.toResponse(newTask);
+      ctx.body = TaskModel.toResponse(newTask);
       ctx.status = 201;
     }
   })
@@ -54,7 +55,7 @@ router
     if (!updatedTask) {
       sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
     } else {
-      ctx.body = Task.toResponse(updatedTask);
+      ctx.body = TaskModel.toResponse(updatedTask);
       ctx.status = 200;
     }
   })
@@ -67,5 +68,3 @@ router
       ctx.status = 204;
     }
   })
-
-  module.exports = router;

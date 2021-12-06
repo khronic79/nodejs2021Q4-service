@@ -1,6 +1,31 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
-class Task {
+type Task = {
+  id: string;
+  title: string | null;
+  order: number;
+  description: string | null;
+  userId: string | null;
+  boardId: string | null;
+  columnId: string | null
+}
+
+export class TaskModel {
+  id: string;
+
+  title: string | null;
+
+  order: number;
+
+  description: string | null;
+
+  userId: string | null;
+
+  boardId: string | null;
+
+  columnId: string | null
+
+
   constructor({
     id = uuidv4(),
     title = 'task',
@@ -19,10 +44,8 @@ class Task {
     this.columnId = columnId;
   }
 
-  static toResponse(task) {
+  static toResponse(task: Task) {
     const { id, title, order, description, userId, boardId, columnId } = task;
     return { id, title, order, description, userId, boardId, columnId };
   }
 }
-
-module.exports = Task;

@@ -1,17 +1,47 @@
-const { v4: uuidv4 } = require('uuid');
-const taskRepo = require('./task.memory.repository');
+import { v4 as uuidv4 } from 'uuid';
 
-async function getAllTask(boardId) {
+import { taskRepo } from './task.memory.repository';
+
+type Task = {
+  id: string;
+  title: string | null;
+  order: number;
+  description: string | null;
+  userId: string | null;
+  boardId: string | null;
+  columnId: string | null
+}
+
+type NewTask = {
+  title: string | null;
+  order: number;
+  description: string | null;
+  userId: string | null;
+  boardId: string | null;
+  columnId: string | null
+}
+
+type UpdateTask = {
+  id: string;
+  title?: string | null;
+  order?: number;
+  description?: string | null;
+  userId?: string | null;
+  boardId?: string | null;
+  columnId?: string | null
+}
+
+async function getAllTask(boardId: string): Promise<Task[] | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
-  const tasks = [];
+  const tasks: Task[] = [];
   taskData.forEach((task) => {
     tasks.push(task);
   });
   return Promise.resolve(tasks);
 }
 
-async function getTask(boardId, taskId) {
+async function getTask(boardId: string, taskId: string): Promise<Task | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
   const task = taskData.get(taskId);
@@ -19,7 +49,7 @@ async function getTask(boardId, taskId) {
   return Promise.resolve(task);
 }
 
-async function createTask(boardId, task) {
+async function createTask(boardId: string, task: NewTask): Promise<Task | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
   const check = (task.title !== undefined) && (task.order !== undefined) && (task.description !== undefined) && (task.userId !== undefined);
@@ -38,7 +68,7 @@ async function createTask(boardId, task) {
   return Promise.resolve(newRecord);
 }
 
-async function updateTask(boardId, task) {
+async function updateTask(boardId: string, task: UpdateTask): Promise<Task | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
   const currentTask = taskData.get(task.id);
@@ -56,7 +86,7 @@ async function updateTask(boardId, task) {
   return Promise.resolve(updatedRecord);
 }
 
-async function deleteTask(boardId, taskId) {
+async function deleteTask(boardId: string, taskId: string): Promise<Task | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
   const deletedTask = taskData.get(taskId);
@@ -65,12 +95,12 @@ async function deleteTask(boardId, taskId) {
   return Promise.resolve(deletedTask);
 }
 
-async function deleteAllTaskInBoard(boardId) {
+async function deleteAllTaskInBoard(boardId: string): Promise<void> {
   taskRepo.delete(boardId);
   return Promise.resolve();
 }
 
-async function clearUserInTasks(userId) {
+async function clearUserInTasks(userId: string): Promise<void> {
   taskRepo.forEach((board) => {
     board.forEach((task) => {
       const tempTask = task;
@@ -79,12 +109,12 @@ async function clearUserInTasks(userId) {
   })
 }
 
-async function newBoard(boardId) {
+async function newBoard(boardId: string): Promise<void> {
   taskRepo.set(boardId, new Map());
   return Promise.resolve();
 }
 
-module.exports = {
+export const taskService = {
   getAllTask,
   getTask,
   createTask,

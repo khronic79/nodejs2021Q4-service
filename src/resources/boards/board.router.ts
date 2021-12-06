@@ -1,9 +1,11 @@
-const Router = require('koa-router');
-const Board = require('./board.model');
-const boardService = require('./board.service');
-const taskService = require('../tasks/task.service');
+// перепесать логику сервиса для добавления нового борда так, чтобы все сервисы таска ушли из роутора в сервис борда
+import Router from 'koa-router';
+import { ParameterizedContext } from 'koa';
+import { BoardModel } from './board.model';
+import { boardService } from './board.service';
+import { taskService } from '../tasks/task.service';
 
-function sendErrorMessage(ctx, errorMessage, status) {
+function sendErrorMessage(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>, errorMessage: string, status: number) {
   ctx.body = {
     errorMessage,
     status
@@ -11,12 +13,12 @@ function sendErrorMessage(ctx, errorMessage, status) {
   ctx.status = status;
 }
 
-const router = new Router();
+export const router = new Router();
 
 router
   .get('/boards', async (ctx) => {
     const users = await boardService.getAllBoards();
-    ctx.body = users.map(Board.toResponse);
+    ctx.body = users.map(BoardModel.toResponse);
     ctx.status = 200;
   })
   .get('/boards/:boardId', async (ctx) => {
@@ -25,18 +27,18 @@ router
     if (!board) {
       sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
     } else {
-      ctx.body = Board.toResponse(board);
+      ctx.body = BoardModel.toResponse(board);
       ctx.status = 200;
     }
   })
   .post('/boards', async (ctx) => {
     const board = ctx.request.body;
     const newBoard = await boardService.createBoard(board);
-    await taskService.newBoard(newBoard.id);
     if (!newBoard) {
       sendErrorMessage(ctx, 'There are issues with inbound data', 400);
     } else {
-      ctx.body = Board.toResponse(newBoard);
+      await taskService.newBoard(newBoard.id);
+      ctx.body = BoardModel.toResponse(newBoard);
       ctx.status = 201;
     }
   })
@@ -50,7 +52,7 @@ router
     if (!updatedBoard) {
       sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
     } else {
-      ctx.body = Board.toResponse(updatedBoard);
+      ctx.body = BoardModel.toResponse(updatedBoard);
       ctx.status = 200;
     }
   })
@@ -64,6 +66,4 @@ router
       ctx.status = 204;
     }
   });
-
-module.exports = router;
 
