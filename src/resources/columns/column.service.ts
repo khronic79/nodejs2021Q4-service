@@ -1,15 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-type Column = {
-  id: string;
-  title: string;
-  order: number;
-};
-
-type NewColumn = {
-  title: string;
-  order: number;
-}
+import { Column, NewColumn } from '../types/types';
 
 function createColumns(oldColumns: Column[], newColumns: Array<Column | NewColumn>): Column[] {
   const result = newColumns

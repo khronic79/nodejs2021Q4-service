@@ -1,16 +1,8 @@
 import Router from 'koa-router';
-import { ParameterizedContext } from 'koa';
 import { UserModel } from './user.model';
 import { usersService } from './user.service';
 import { taskService } from '../tasks/task.service';
-
-function sendErrorMessage(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>, errorMessage: string, status: number) {
-  ctx.body = {
-    errorMessage,
-    status
-  };
-  ctx.status = status;
-}
+import { sendErrorMessage } from '../shared/utils';
 
 export const router = new Router();
 
@@ -32,10 +24,11 @@ router
   })
   .post('/users', async (ctx) => {
     const user = ctx.request.body;
-    const newUser = await usersService.createUser(user);
-    if (!newUser) {
+    const check = user.name && user.login && user.password ;
+    if (!check) {
       sendErrorMessage(ctx, 'There are issues with inbound data', 400);
     } else {
+      const newUser = await usersService.createUser(user);
       ctx.body = UserModel.toResponse(newUser);
       ctx.status = 201;
     }

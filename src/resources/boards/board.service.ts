@@ -1,56 +1,22 @@
-import { v4 as uuidv4 } from 'uuid';
 import { boardRepo } from './board.memory.repository';
 import { columnService } from '../columns/column.service';
-
-type Column = {
-  id: string;
-  title: string;
-  order: number;
-};
-
-type Board = {
-  id: string;
-  title: string;
-  columns: Column[];
-};
-
-type NewBoard = {
-  title: string;
-  columns: Column[];
-};
-
-type UpdatedBoard = {
-  id: string;
-  title?: string;
-  columns?: Column[];
-};
+import { Board, NewBoard, UpdatedBoard } from '../types/types';
+import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service.shared';
 
 async function getAllBoards(): Promise<Board[]> {
-  const boards: Board[] = [];
-  boardRepo.forEach((board) => {
-    boards.push(board);
-  });
-  return Promise.resolve(boards);
+  return getAll(boardRepo);
 }
 
 async function getBoard(boardId: string): Promise<Board | null> {
-  const board = boardRepo.get(boardId);
-  if (!board) return Promise.resolve(null);
-  return Promise.resolve(board);
+  return getRecord(boardId, boardRepo);
 }
 
-async function createBoard(board: NewBoard): Promise<Board | null> {
-  const check = board.title && board.columns && Array.isArray(board.columns);
-  if (!check) return Promise.resolve(null);
-  const columns = columnService.createColumns([], board.columns);
-  const id = uuidv4();
-  const newRecord = {
-    id,
-    title: board.title,
-    columns,
+async function createBoard(board: NewBoard): Promise<Board> {
+  const newBoard = {
+    ...board
   }
-  boardRepo.set(id, newRecord);
-  return Promise.resolve(newRecord);
+  newBoard.columns = columnService.createColumns([], board.columns);
+  return createRecord(newBoard, boardRepo);
 }
 
 async function updateBoard(board: UpdatedBoard): Promise<Board | null> {
@@ -67,10 +33,7 @@ async function updateBoard(board: UpdatedBoard): Promise<Board | null> {
 }
 
 async function deleteBoard(boardId: string): Promise<Board | null> {
-  const board = boardRepo.get(boardId);
-  if (!board) return Promise.resolve(null);
-  boardRepo.delete(boardId);
-  return Promise.resolve(board);
+  return deleteRecord(boardId, boardRepo);
 }
 
 export const boardService = {

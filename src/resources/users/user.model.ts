@@ -1,12 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-type User = {
-  id: string;
-  name: string;
-  login: string;
-  password: string
-}
-
+import { User } from '../types/types';
 
 export class UserModel {
   id: string;

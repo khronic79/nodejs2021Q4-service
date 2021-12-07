@@ -1,53 +1,17 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { usersRepo } from './user.memory.repository';
-
-type User = {
-  id: string;
-  name: string;
-  login: string;
-  password: string
-}
-
-type NewUser = {
-  name: string;
-  login: string;
-  password: string
-}
-
-type UpdateUser = {
-  id: string;
-  name?: string;
-  login?: string;
-  password?: string
-}
+import { User, NewUser, UpdateUser } from '../types/types';
+import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service.shared';
 
 async function getAllUsers(): Promise<User[]> {
-  const users: User[]  = [];
-  usersRepo.forEach((user) => {
-      users.push(user);
-  });
-  return Promise.resolve(users);
+  return getAll(usersRepo);
 }
 
 async function getUser(userId: string): Promise<User | null> {
-  const user = usersRepo.get(userId);
-  if (!user) return Promise.resolve(null);
-  return Promise.resolve(user);
+  return getRecord(userId, usersRepo);
 }
 
-async function createUser(newUser: NewUser): Promise<User | null> {
-  const check = newUser.name && newUser.login && newUser.password ;
-  if (!check) return Promise.resolve(null);
-  const id = uuidv4();
-  const newRecord = {
-    id,
-    name: newUser.name,
-    login: newUser.login,
-    password: newUser.password
-  }
-  usersRepo.set(id, newRecord);
-  return Promise.resolve(newRecord);
+async function createUser(newUser: NewUser): Promise<User> {
+  return createRecord(newUser, usersRepo);
 }
 
 async function updateUser(newUser: UpdateUser): Promise<User | null> {
@@ -65,10 +29,7 @@ async function updateUser(newUser: UpdateUser): Promise<User | null> {
 }
 
 async function deleteUser(userId: string): Promise<User | null> {
-  const user = usersRepo.get(userId);
-  if (!user) return Promise.resolve(null);
-  usersRepo.delete(userId);
-  return Promise.resolve(user);
+  return deleteRecord(userId, usersRepo);
 }
 
 export const usersService = { 

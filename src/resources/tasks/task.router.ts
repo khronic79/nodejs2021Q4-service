@@ -1,15 +1,7 @@
-import { ParameterizedContext } from 'koa';
 import Router from 'koa-router';
 import { TaskModel } from './task.model';
 import { taskService } from "./task.service";
-
-function sendErrorMessage(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>, errorMessage: string, status: number) {
-  ctx.body = {
-    errorMessage,
-    status
-  };
-  ctx.status = status;
-}
+import { sendErrorMessage } from '../shared/utils';
 
 export const router = new Router();
 
@@ -37,12 +29,17 @@ router
   .post('/boards/:boardId/tasks', async (ctx) => {
     const { boardId } = ctx.params;
     const task = ctx.request.body;
-    const newTask = await taskService.createTask(boardId, task);
-    if (!newTask) {
+    const check = (task.title !== undefined) && (task.order !== undefined) && (task.description !== undefined) && (task.userId !== undefined);
+    if (!check) {
       sendErrorMessage(ctx, 'There are issues with inbound data', 400);
     } else {
-      ctx.body = TaskModel.toResponse(newTask);
-      ctx.status = 201;
+      const newTask = await taskService.createTask(boardId, task);
+      if (!newTask) {
+        sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+      } else {
+          ctx.body = TaskModel.toResponse(newTask);
+          ctx.status = 201;
+      }
     }
   })
   .put('/boards/:boardId/tasks/:taskId', async (ctx) => {

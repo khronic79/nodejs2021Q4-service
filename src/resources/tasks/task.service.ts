@@ -1,52 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
-
 import { taskRepo } from './task.memory.repository';
-
-type Task = {
-  id: string;
-  title: string | null;
-  order: number;
-  description: string | null;
-  userId: string | null;
-  boardId: string | null;
-  columnId: string | null
-}
-
-type NewTask = {
-  title: string | null;
-  order: number;
-  description: string | null;
-  userId: string | null;
-  boardId: string | null;
-  columnId: string | null
-}
-
-type UpdateTask = {
-  id: string;
-  title?: string | null;
-  order?: number;
-  description?: string | null;
-  userId?: string | null;
-  boardId?: string | null;
-  columnId?: string | null
-}
+import { Task, NewTask, UpdateTask } from '../types/types';
+import { getAll, getRecord, deleteRecord } from '../shared/service.shared';
 
 async function getAllTask(boardId: string): Promise<Task[] | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
-  const tasks: Task[] = [];
-  taskData.forEach((task) => {
-    tasks.push(task);
-  });
-  return Promise.resolve(tasks);
+  return getAll(taskData);
 }
 
 async function getTask(boardId: string, taskId: string): Promise<Task | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
-  const task = taskData.get(taskId);
-  if (!task) return Promise.resolve(null);
-  return Promise.resolve(task);
+  return getRecord(taskId, taskData);
 }
 
 async function createTask(boardId: string, task: NewTask): Promise<Task | null> {
@@ -89,10 +55,7 @@ async function updateTask(boardId: string, task: UpdateTask): Promise<Task | nul
 async function deleteTask(boardId: string, taskId: string): Promise<Task | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
-  const deletedTask = taskData.get(taskId);
-  if (!deletedTask) return Promise.resolve(null);
-  taskData.delete(taskId);
-  return Promise.resolve(deletedTask);
+  return deleteRecord(taskId, taskData);
 }
 
 async function deleteAllTaskInBoard(boardId: string): Promise<void> {

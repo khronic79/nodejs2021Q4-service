@@ -1,14 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-type Task = {
-  id: string;
-  title: string | null;
-  order: number;
-  description: string | null;
-  userId: string | null;
-  boardId: string | null;
-  columnId: string | null
-}
+import { Task } from '../types/types';
 
 export class TaskModel {
   id: string;

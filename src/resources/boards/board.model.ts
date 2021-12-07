@@ -1,16 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-type Column = {
-  id: string;
-  title: string;
-  order: number;
-};
-
-type Board = {
-  id: string;
-  title: string;
-  columns: Column[];
-};
+import { Board, Column } from '../types/types';
 
 export class BoardModel {
   id: string;
