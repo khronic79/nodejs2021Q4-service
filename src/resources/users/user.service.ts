@@ -2,18 +2,48 @@ import { usersRepo } from './user.memory.repository';
 import { User, NewUser, UpdateUser } from '../types/types';
 import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service.shared';
 
+/**
+ * Return all users from repository
+ *
+ * @returns The promise with array of all users in repository
+ *
+ */
 async function getAllUsers(): Promise<User[]> {
   return getAll(usersRepo);
 }
 
+/**
+ * Return user according to user ID
+ * 
+ * @param userId - The unique user id in repository
+ * 
+ * @returns The promise with user's object of User type or null if user with userId does not exist
+ *
+ */
 async function getUser(userId: string): Promise<User | null> {
   return getRecord(userId, usersRepo);
 }
 
+/**
+ * Create a new user in repository
+ * 
+ * @param newUser - Object of NewUser type with users's data
+ * 
+ * @returns The promise with created user's object of User type or null if newUser has not needed data (not according to NewUser type)
+ *
+ */
 async function createUser(newUser: NewUser): Promise<User> {
   return createRecord(newUser, usersRepo);
 }
 
+/**
+ * Update an existed user in repository
+ * 
+ * @param newUser - Object of UpdateUser type with users's data
+ * 
+ * @returns The promise with created user's object or null if newUser has not needed data (not according to UpdateUser type)
+ *
+ */
 async function updateUser(newUser: UpdateUser): Promise<User | null> {
   if (!newUser.id) return Promise.resolve(null);
   const currentUser = usersRepo.get(newUser.id);
@@ -28,6 +58,14 @@ async function updateUser(newUser: UpdateUser): Promise<User | null> {
   return Promise.resolve(newRecord);
 }
 
+/**
+ * Delete user's record in repository and return deleted user according to user ID
+ * 
+ * @param userId - The unique user id in repository
+ * 
+ * @returns The promise with user's object of User type or null if user with userId does not exist
+ *
+ */
 async function deleteUser(userId: string): Promise<User | null> {
   return deleteRecord(userId, usersRepo);
 }

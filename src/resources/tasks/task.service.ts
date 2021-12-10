@@ -3,6 +3,14 @@ import { taskRepo } from './task.memory.repository';
 import { Task, NewTask, UpdateTask } from '../types/types';
 import { getAll, getRecord, deleteRecord } from '../shared/service.shared';
 
+/**
+ * Return all tasks from repository
+ * 
+ * @param boardId - The 
+ *
+ * @returns The promise with array of all users in repository
+ *
+ */
 async function getAllTask(boardId: string): Promise<Task[] | null> {
   const taskData = taskRepo.get(boardId);
   if (!taskData) return Promise.resolve(null);
