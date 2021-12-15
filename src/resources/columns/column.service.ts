@@ -1,7 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Column, NewColumn } from '../types/types';
 
-function createColumns(oldColumns: Column[], newColumns: Array<Column | NewColumn>): Column[] {
+/**
+ * Create or update columns in board
+ * 
+ * @param oldColumns - Array of columns before update the board
+ * @param newColumns - Array of data for update columns were sent from client
+ * 
+ * @returns - Array updated columns
+ *
+ */
+export function createColumns(oldColumns: Column[], newColumns: Array<Column | NewColumn>): Column[] {
   const result = newColumns
     .filter((column) => (column.title && column.order))
     .map((column) => {
@@ -16,8 +25,4 @@ function createColumns(oldColumns: Column[], newColumns: Array<Column | NewColum
     if (check < 0) result.push(oldColumn);
   });
   return result;
-}
-
-export const columnService = {
-  createColumns
 }
