@@ -1,79 +1,101 @@
-import { usersRepo } from './user.memory.repository';
-import { User, NewUser, UpdateUser } from '../types/types';
-import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service.shared';
+import Router from 'koa-router';
+import { ParameterizedContext } from 'koa';
+import { UserModel } from './user.model';
+import * as db  from './user.memory.repository';
+import { clearUserInTasks } from '../tasks/task.memory.repository';
+import { sendErrorMessage } from '../shared/utils';
 
 /**
- * Return all users from repository
- *
- * @returns The promise with array of all users in repository
+ * Handle GET request to "/users" route and send set of users from repository
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
  *
  */
-async function getAllUsers(): Promise<User[]> {
-  return getAll(usersRepo);
+ export async function getAllUsers(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const users = await db.getAllUsers();
+  ctx.body = users.map(UserModel.toResponse);
+  ctx.status = 200;
 }
 
 /**
- * Return user according to user ID
+ * Handle GET request to "/users/:userId" route and send User record with userId
  * 
- * @param userId - The unique user id in repository
+ * @param ctx - KOA context object
  * 
- * @returns The promise with user's object of User type or null if user with userId does not exist
+ * @returns The promise void
  *
  */
-async function getUser(userId: string): Promise<User | null> {
-  return getRecord(userId, usersRepo);
-}
-
-/**
- * Create a new user in repository
- * 
- * @param newUser - Object of NewUser type with users's data
- * 
- * @returns The promise with created user's object of User type or null if newUser has not needed data (not according to NewUser type)
- *
- */
-async function createUser(newUser: NewUser): Promise<User> {
-  return createRecord(newUser, usersRepo);
-}
-
-/**
- * Update an existed user in repository
- * 
- * @param newUser - Object of UpdateUser type with users's data
- * 
- * @returns The promise with created user's object or null if newUser has not needed data (not according to UpdateUser type)
- *
- */
-async function updateUser(newUser: UpdateUser): Promise<User | null> {
-  if (!newUser.id) return Promise.resolve(null);
-  const currentUser = usersRepo.get(newUser.id);
-  if (!currentUser) return Promise.resolve(null);
-  const newRecord = {
-      id: newUser.id,
-      name: newUser.name? newUser.name: currentUser.name,
-      login: newUser.login? newUser.login: currentUser.login,
-      password: newUser.password? newUser.password: currentUser.password
+ export async function getUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { userId } = ctx.params;
+  const user = await db.getUser(userId);
+  if (!user) {
+    sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
+  } else {
+    ctx.body = UserModel.toResponse(user);
+    ctx.status = 200;
   }
-  usersRepo.set(newUser.id, newRecord);
-  return Promise.resolve(newRecord);
 }
 
 /**
- * Delete user's record in repository and return deleted user according to user ID
+ * Handle POST request on "/users" route, create new User record in repository and send new User object back
  * 
- * @param userId - The unique user id in repository
+ * @param ctx - KOA context object
  * 
- * @returns The promise with user's object of User type or null if user with userId does not exist
+ * @returns The promise void
  *
  */
-async function deleteUser(userId: string): Promise<User | null> {
-  return deleteRecord(userId, usersRepo);
+ export async function createUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const user = ctx.request.body;
+  const check = user.name && user.login && user.password ;
+  if (!check) {
+    sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+  } else {
+    const newUser = await db.createUser(user);
+    ctx.body = UserModel.toResponse(newUser);
+    ctx.status = 201;
+  }
 }
 
-export const usersService = { 
-  getAllUsers,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser
-};
+/**
+ * Handle PUT request on "/users/:userId" route, update User record with userId and send updated User object back
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function updateUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { userId } = ctx.params;
+  const userData = ctx.request.body;
+  const updatedUser = await db.updateUser({
+    id: userId,
+    ...userData
+  });
+  if (!updatedUser) {
+    sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
+  } else {
+    ctx.body = UserModel.toResponse(updatedUser);
+    ctx.status = 200;
+  }
+}
+
+/**
+ * Handle DELETE request on "/users/:userId" route, delete User record with userId
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+export async function deleteUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { userId } = ctx.params;
+  const deletedUser = await db.deleteUser(userId);
+  if (!deletedUser) {
+    sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
+  } else {
+    await clearUserInTasks(userId);
+    ctx.status = 204;
+  }
+}

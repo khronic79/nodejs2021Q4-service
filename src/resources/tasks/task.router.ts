@@ -1,5 +1,5 @@
 import Router from 'koa-router';
-import { handlers } from './task.handler';
+import * as handlers from './task.service';
 
 export const router = new Router();
 

@@ -1,97 +1,109 @@
-import { v4 as uuidv4 } from 'uuid';
-import { taskRepo } from './task.memory.repository';
-import { Task, NewTask, UpdateTask } from '../types/types';
-import { getAll, getRecord, deleteRecord } from '../shared/service.shared';
+import Router from 'koa-router';
+import { ParameterizedContext } from 'koa';
+import { TaskModel } from './task.model';
+import * as db from "./task.memory.repository";
+import { sendErrorMessage } from '../shared/utils';
 
 /**
- * Return all tasks from repository
+ * Handle GET request to "/boards/:boardId/tasks" route and send set of tasks for board with boardId from repository
  * 
- * @param boardId - The 
- *
- * @returns The promise with array of all users in repository
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
  *
  */
-async function getAllTask(boardId: string): Promise<Task[] | null> {
-  const taskData = taskRepo.get(boardId);
-  if (!taskData) return Promise.resolve(null);
-  return getAll(taskData);
+ export async function getAllTasks(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId } = ctx.params;
+  const tasks = await db.getAllTask(boardId);
+  if (!tasks) {
+    sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
+  } else {
+    ctx.body = tasks.map(TaskModel.toResponse);
+    ctx.status = 200;
+  }
 }
 
-async function getTask(boardId: string, taskId: string): Promise<Task | null> {
-  const taskData = taskRepo.get(boardId);
-  if (!taskData) return Promise.resolve(null);
-  return getRecord(taskId, taskData);
+/**
+ * Handle GET request to "/boards/:boardId/tasks/:taskId" route and send Task record with taskId for board with boardId
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function getTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId, taskId } = ctx.params;
+  const task = await db.getTask(boardId, taskId);
+  if (!task) {
+    sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
+  } else {
+    ctx.body = TaskModel.toResponse(task);
+    ctx.status = 200;
+  }
 }
 
-async function createTask(boardId: string, task: NewTask): Promise<Task | null> {
-  const taskData = taskRepo.get(boardId);
-  if (!taskData) return Promise.resolve(null);
+/**
+ * Handle POST request on "/boards/:boardId/tasks" route, create new Task record for board with boardId in repository and send new Task object back
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function createTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId } = ctx.params;
+  const task = ctx.request.body;
   const check = (task.title !== undefined) && (task.order !== undefined) && (task.description !== undefined) && (task.userId !== undefined);
-  if (!check) return Promise.resolve(null);
-  const id = uuidv4();
-  const newRecord = {
-      id,
-      boardId,
-      title: task.title,
-      order: task.order,
-      description: task.description,
-      userId: task.userId,
-      columnId: task.columnId
-  };
-  taskData.set(id, newRecord);
-  return Promise.resolve(newRecord);
+  if (!check) {
+    sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+  } else {
+    const newTask = await db.createTask(boardId, task);
+    if (!newTask) {
+      sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+    } else {
+        ctx.body = TaskModel.toResponse(newTask);
+        ctx.status = 201;
+    }
+  }
 }
 
-async function updateTask(boardId: string, task: UpdateTask): Promise<Task | null> {
-  const taskData = taskRepo.get(boardId);
-  if (!taskData) return Promise.resolve(null);
-  const currentTask = taskData.get(task.id);
-  if (!currentTask) return Promise.resolve(null);
-  const updatedRecord = {
-    boardId,
-    id: task.id,
-    title: (task.title !== undefined)? task.title: currentTask.title,
-    order: (task.order !== undefined)? task.order: currentTask.order,
-    description: (task.description !== undefined)? task.description: currentTask.description,
-    userId: (task.userId !== undefined)? task.userId: currentTask.userId,
-    columnId: (task.columnId !== undefined)? task.columnId: currentTask.columnId,
-  };
-  taskData.set(task.id, updatedRecord);
-  return Promise.resolve(updatedRecord);
+/**
+ * Handle PUT request on "/boards/:boardId/tasks/:taskId" route, update Task record with userId for board with boardId and send updated Task object back
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function updateTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId, taskId } = ctx.params;
+  const userData = ctx.request.body;
+  const updatedTask = await db.updateTask(boardId, {
+    id: taskId,
+    ...userData
+  });
+  if (!updatedTask) {
+    sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
+  } else {
+    ctx.body = TaskModel.toResponse(updatedTask);
+    ctx.status = 200;
+  }
 }
 
-async function deleteTask(boardId: string, taskId: string): Promise<Task | null> {
-  const taskData = taskRepo.get(boardId);
-  if (!taskData) return Promise.resolve(null);
-  return deleteRecord(taskId, taskData);
-}
-
-async function deleteAllTaskInBoard(boardId: string): Promise<void> {
-  taskRepo.delete(boardId);
-  return Promise.resolve();
-}
-
-async function clearUserInTasks(userId: string): Promise<void> {
-  taskRepo.forEach((board) => {
-    board.forEach((task) => {
-      const tempTask = task;
-      if (tempTask.userId === userId) tempTask.userId = null;
-    })
-  })
-}
-
-async function newBoard(boardId: string): Promise<void> {
-  taskRepo.set(boardId, new Map());
-  return Promise.resolve();
-}
-
-export const taskService = {
-  getAllTask,
-  getTask,
-  createTask,
-  updateTask,
-  deleteTask,
-  deleteAllTaskInBoard,
-  clearUserInTasks,
-  newBoard
+/**
+ * Handle DELETE request on "/boards/:boardId/tasks/:taskId" route, delete Task record with taskId for board with boardId
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+export async function deleteTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId, taskId } = ctx.params;
+  const deletedTask = await db.deleteTask(boardId, taskId);
+  if (!deletedTask) {
+    sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
+  } else {
+    ctx.status = 204;
+  }
 }

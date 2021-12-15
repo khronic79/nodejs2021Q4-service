@@ -1,45 +1,102 @@
-import { boardRepo } from './board.memory.repository';
-import { columnService } from '../columns/column.service';
-import { Board, NewBoard, UpdatedBoard } from '../types/types';
-import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service.shared';
+import Router from 'koa-router';
+import { ParameterizedContext } from 'koa';
+import { BoardModel } from './board.model';
+import * as db from './board.memory.repository';
+import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repository';
+import { sendErrorMessage } from '../shared/utils';
 
-async function getAllBoards(): Promise<Board[]> {
-  return getAll(boardRepo);
+/**
+ * Handle GET request to "/boards" route and send set of boards from repository
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function getAllBoards(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const users = await db.getAllBoards();
+  ctx.body = users.map(BoardModel.toResponse);
+  ctx.status = 200;
 }
 
-async function getBoard(boardId: string): Promise<Board | null> {
-  return getRecord(boardId, boardRepo);
-}
-
-async function createBoard(board: NewBoard): Promise<Board> {
-  const newBoard = {
-    ...board
+/**
+ * Handle GET request to "/boards/:boardId" route and send Board record with boardId
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function getBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId } = ctx.params;
+  const board = await db.getBoard(boardId);
+  if (!board) {
+    sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
+  } else {
+    ctx.body = BoardModel.toResponse(board);
+    ctx.status = 200;
   }
-  newBoard.columns = columnService.createColumns([], board.columns);
-  return createRecord(newBoard, boardRepo);
 }
 
-async function updateBoard(board: UpdatedBoard): Promise<Board | null> {
-  if (!board.id) return Promise.resolve(null);
-  const currentBoard = boardRepo.get(board.id);
-  if (!currentBoard) return Promise.resolve(null);
-  const newRecord = {
-      id: board.id,
-      title: board.title? board.title: currentBoard.title,
-      columns: board.columns? board.columns: currentBoard.columns
+/**
+ * Handle POST request on "/boards" route, create new Board record in repository and send new Board object back
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function createBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const board = ctx.request.body;
+  const check = board.title && board.columns && Array.isArray(board.columns);
+  if (!check) {
+    sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+  } else {
+    const newBoard = await db.createBoard(board);
+    await newBoardForTask(newBoard.id);
+    ctx.body = BoardModel.toResponse(newBoard);
+    ctx.status = 201;
   }
-  boardRepo.set(board.id, newRecord);
-  return Promise.resolve(newRecord);
 }
 
-async function deleteBoard(boardId: string): Promise<Board | null> {
-  return deleteRecord(boardId, boardRepo);
+/**
+ * Handle PUT request on "/boards/:boardId" route, update Board record with boardId and send updated Board object back
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function updateBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId } = ctx.params;
+  const boardData = ctx.request.body;
+  const updatedBoard = await db.updateBoard({
+    id: boardId,
+    ...boardData
+  });
+  if (!updatedBoard) {
+    sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
+  } else {
+    ctx.body = BoardModel.toResponse(updatedBoard);
+    ctx.status = 200;
+  }
 }
 
-export const boardService = {
-  getAllBoards,
-  getBoard,
-  createBoard,
-  updateBoard,
-  deleteBoard
+/**
+ * Handle DELETE request on "/boards/:boardId" route, delete Board record with boardId
+ * 
+ * @param ctx - KOA context object
+ * 
+ * @returns The promise void
+ *
+ */
+ export async function deleteBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+  const { boardId } = ctx.params;
+  const deletedBoard = await db.deleteBoard(boardId);
+  if (!deletedBoard) {
+    sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
+  } else {
+    await deleteAllTaskInBoard(boardId);
+    ctx.status = 204;
+  }
 }
