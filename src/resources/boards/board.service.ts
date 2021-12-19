@@ -1,4 +1,3 @@
-import Router from 'koa-router';
 import { ParameterizedContext } from 'koa';
 import { BoardModel } from './board.model';
 import * as db from './board.memory.repository';
@@ -13,7 +12,7 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function getAllBoards(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+ export async function getAllBoards(ctx: ParameterizedContext): Promise<void> {
   const users = await db.getAllBoards();
   ctx.body = users.map(BoardModel.toResponse);
   ctx.status = 200;
@@ -27,8 +26,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function getBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId } = ctx.params;
+ export async function getBoard(ctx: ParameterizedContext): Promise<void> {
+  const { boardId } = ctx['params'];
   const board = await db.getBoard(boardId);
   if (!board) {
     sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
@@ -46,7 +45,7 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function createBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+ export async function createBoard(ctx: ParameterizedContext): Promise<void> {
   const board = ctx.request.body;
   const check = board.title && board.columns && Array.isArray(board.columns);
   if (!check) {
@@ -67,8 +66,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function updateBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId } = ctx.params;
+ export async function updateBoard(ctx: ParameterizedContext): Promise<void> {
+  const { boardId } = ctx['params'];
   const boardData = ctx.request.body;
   const updatedBoard = await db.updateBoard({
     id: boardId,
@@ -90,8 +89,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function deleteBoard(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId } = ctx.params;
+ export async function deleteBoard(ctx: ParameterizedContext): Promise<void> {
+  const { boardId } = ctx['params'];
   const deletedBoard = await db.deleteBoard(boardId);
   if (!deletedBoard) {
     sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);

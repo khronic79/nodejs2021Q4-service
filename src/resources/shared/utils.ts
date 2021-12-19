@@ -1,5 +1,4 @@
 import { ParameterizedContext } from 'koa';
-import Router from 'koa-router';
 
 /**
  * Send error message to client
@@ -11,7 +10,7 @@ import Router from 'koa-router';
  * @returns Void
  *
  */
-export function sendErrorMessage(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>, errorMessage: string, status: number) {
+export function sendErrorMessage(ctx: ParameterizedContext, errorMessage: string, status: number) {
   ctx.body = {
     errorMessage,
     status

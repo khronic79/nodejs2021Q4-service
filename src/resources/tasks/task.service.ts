@@ -1,4 +1,3 @@
-import Router from 'koa-router';
 import { ParameterizedContext } from 'koa';
 import { TaskModel } from './task.model';
 import * as db from "./task.memory.repository";
@@ -12,8 +11,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function getAllTasks(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId } = ctx.params;
+ export async function getAllTasks(ctx: ParameterizedContext): Promise<void> {
+  const { boardId } = ctx['params'];
   const tasks = await db.getAllTask(boardId);
   if (!tasks) {
     sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
@@ -31,8 +30,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function getTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId, taskId } = ctx.params;
+ export async function getTask(ctx: ParameterizedContext): Promise<void> {
+  const { boardId, taskId } = ctx['params'];
   const task = await db.getTask(boardId, taskId);
   if (!task) {
     sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
@@ -50,8 +49,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function createTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId } = ctx.params;
+ export async function createTask(ctx: ParameterizedContext): Promise<void> {
+  const { boardId } = ctx['params'];
   const task = ctx.request.body;
   const check = (task.title !== undefined) && (task.order !== undefined) && (task.description !== undefined) && (task.userId !== undefined);
   if (!check) {
@@ -75,8 +74,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function updateTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId, taskId } = ctx.params;
+ export async function updateTask(ctx: ParameterizedContext): Promise<void> {
+  const { boardId, taskId } = ctx['params'];
   const userData = ctx.request.body;
   const updatedTask = await db.updateTask(boardId, {
     id: taskId,
@@ -98,8 +97,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
-export async function deleteTask(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { boardId, taskId } = ctx.params;
+export async function deleteTask(ctx: ParameterizedContext): Promise<void> {
+  const { boardId, taskId } = ctx['params'];
   const deletedTask = await db.deleteTask(boardId, taskId);
   if (!deletedTask) {
     sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);

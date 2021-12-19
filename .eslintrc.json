@@ -39,6 +39,8 @@
     "node/no-unsupported-features/es-syntax": "off",
     "no-underscore-dangle": "off",
     "import/prefer-default-export": "off",
-    "tsdoc/syntax": "warn"
+    "tsdoc/syntax": "warn",
+    "@typescript-eslint/no-explicit-any": "error",
+    "dot-notation": 0
   }
 }

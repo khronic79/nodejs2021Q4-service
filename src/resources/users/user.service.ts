@@ -1,4 +1,3 @@
-import Router from 'koa-router';
 import { ParameterizedContext } from 'koa';
 import { UserModel } from './user.model';
 import * as db  from './user.memory.repository';
@@ -13,7 +12,7 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function getAllUsers(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+ export async function getAllUsers(ctx: ParameterizedContext): Promise<void> {
   const users = await db.getAllUsers();
   ctx.body = users.map(UserModel.toResponse);
   ctx.status = 200;
@@ -27,8 +26,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function getUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { userId } = ctx.params;
+ export async function getUser(ctx: ParameterizedContext): Promise<void> {
+  const { userId } = ctx['params'];
   const user = await db.getUser(userId);
   if (!user) {
     sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
@@ -46,7 +45,7 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function createUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
+ export async function createUser(ctx: ParameterizedContext): Promise<void> {
   const user = ctx.request.body;
   const check = user.name && user.login && user.password ;
   if (!check) {
@@ -66,8 +65,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
- export async function updateUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { userId } = ctx.params;
+ export async function updateUser(ctx: ParameterizedContext): Promise<void> {
+  const { userId } = ctx['params'];
   const userData = ctx.request.body;
   const updatedUser = await db.updateUser({
     id: userId,
@@ -89,8 +88,8 @@ import { sendErrorMessage } from '../shared/utils';
  * @returns The promise void
  *
  */
-export async function deleteUser(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>): Promise<void> {
-  const { userId } = ctx.params;
+export async function deleteUser(ctx: ParameterizedContext): Promise<void> {
+  const { userId } = ctx['params'];
   const deletedUser = await db.deleteUser(userId);
   if (!deletedUser) {
     sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
