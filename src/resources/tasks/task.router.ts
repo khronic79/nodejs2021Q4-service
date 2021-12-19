@@ -1,11 +1,11 @@
 import Router from 'koa-router';
-import * as handlers from './task.service';
+import * as services from './task.service';
 
 export const router = new Router();
 
 router
-  .get('/boards/:boardId/tasks', handlers.getAllTasks)
-  .get('/boards/:boardId/tasks/:taskId', handlers.getTask)
-  .post('/boards/:boardId/tasks', handlers.createTask)
-  .put('/boards/:boardId/tasks/:taskId', handlers.updateTask)
-  .delete('/boards/:boardId/tasks/:taskId', handlers.deleteTask)
+  .get('/boards/:boardId/tasks', services.getAllTasks)
+  .get('/boards/:boardId/tasks/:taskId', services.getTask)
+  .post('/boards/:boardId/tasks', services.createTask)
+  .put('/boards/:boardId/tasks/:taskId', services.updateTask)
+  .delete('/boards/:boardId/tasks/:taskId', services.deleteTask)

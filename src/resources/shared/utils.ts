@@ -8,7 +8,7 @@ import Router from 'koa-router';
  * @param errorMessage - Message text
  * @param status - Response status
  * 
- * @returns The promise void
+ * @returns Void
  *
  */
 export function sendErrorMessage(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>, errorMessage: string, status: number) {
