@@ -5,7 +5,7 @@ import path from 'path';
 import YAML from 'yamljs';
 import { koaSwagger } from 'koa2-swagger-ui';
 import json from 'koa-json';
-import { createLogger, format, transports } from 'winston';
+import { httpLogger } from './resources/logger/http-logger';
 import { router as userRouter } from './resources/users/user.router';
 import { router as boardRouter } from './resources/boards/board.router';
 import { router as taskRouter } from './resources/tasks/task.router';
@@ -23,21 +23,25 @@ router.get('/', (ctx, next) => {
   next();
 });
 
+app.on('error', (err, ctx) => {
+  console.log({
+    'url': ctx.url,
+    'query parameters': ctx.querystring,
+    'request body': ctx.request.body,
+    'status code': err.status,
+    'body': err.message
+  });
+  console.log('ERROR!!!!', err);
+})
+
 app
-  .use(async (ctx, next) => {
-    await next();
-    const logger = createLogger({
-      format: format.combine(
-        format.splat(),
-        format.simple(),
-        format.timestamp(),
-        format.prettyPrint(),
-      ),
-      transports: [new transports.Console()]
-    });
-    logger.log('error', 'test message %s', ctx.body);
-  })
-  .use(bodyParser())
+  .use(httpLogger)
+  .use(bodyParser({
+    onerror (err, ctx) {
+      console.log(err);
+      ctx.throw(422, 'json is not valid');
+    }
+  }))
   .use(json())
   .use(router.routes())
   .use(userRouter.routes())

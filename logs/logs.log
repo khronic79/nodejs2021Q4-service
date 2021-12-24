@@ -1,0 +1,94 @@
+{"level":"info","message":"Request Method: %s"}
+info: Request Method: POST
+{"level":"info","message":"Request Method: POST"}
+{"level":"info","message":"Request Method: '{\\n' +\n  '  \"id\": \"7c3393a0-f635-4520-8912-c61e2ab1023d\",\\n' +\n  '  \"title\": \"Autotest board\",\\n' +\n  '  \"columns\": [\\n' +\n  '    {\\n' +\n  '      \"id\": \"beb4826e-2403-4058-99b5-ffe6a7d80b13\",\\n' +\n  '      \"title\": \"Backlog\",\\n' +\n  '      \"order\": 1\\n' +\n  '    },\\n' +\n  '    {\\n' +\n  '      \"id\": \"af986041-cfd0-499a-9af0-57f0b358003b\",\\n' +\n  '      \"title\": \"Sprint\",\\n' +\n  '      \"order\": 2\\n' +\n  '    }\\n' +\n  '  ]\\n' +\n  '}'"}
+{"level":"info","message":"Request Method: '{\\n' +\n  '  \"id\": \"d15db1f7-40f5-4596-b841-0d3e57c9b09d\",\\n' +\n  '  \"title\": \"Autotest board\",\\n' +\n  '  \"columns\": [\\n' +\n  '    {\\n' +\n  '      \"id\": \"03013cac-18ab-44af-9056-552b15846c6b\",\\n' +\n  '      \"title\": \"Backlog\",\\n' +\n  '      \"order\": 1\\n' +\n  '    },\\n' +\n  '    {\\n' +\n  '      \"id\": \"830910ae-8720-4b0b-ad8d-4fcae45436ee\",\\n' +\n  '      \"title\": \"Sprint\",\\n' +\n  '      \"order\": 2\\n' +\n  '    }\\n' +\n  '  ]\\n' +\n  '}'"}
+{
+  level: 'info',
+  message: "Request Method: '{\\n' +\n" +
+    `  '  "id": "173158f5-7fe0-4193-a392-e1a8dc52ea1f",\\n' +\n` +
+    `  '  "title": "Autotest board",\\n' +\n` +
+    `  '  "columns": [\\n' +\n` +
+    "  '    {\\n' +\n" +
+    `  '      "id": "fe808b03-43d1-401b-98b1-f592728fbb39",\\n' +\n` +
+    `  '      "title": "Backlog",\\n' +\n` +
+    `  '      "order": 1\\n' +\n` +
+    "  '    },\\n' +\n" +
+    "  '    {\\n' +\n" +
+    `  '      "id": "9e79805f-a64a-46fa-abf5-a7672b206b95",\\n' +\n` +
+    `  '      "title": "Sprint",\\n' +\n` +
+    `  '      "order": 2\\n' +\n` +
+    "  '    }\\n' +\n" +
+    "  '  ]\\n' +\n" +
+    "  '}'"
+}
+{
+  level: 'info',
+  message: '{\n' +
+    '  "id": "55b718ce-5f2c-4e00-91a9-d0b3ddc49d35",\n' +
+    '  "title": "Autotest board",\n' +
+    '  "columns": [\n' +
+    '    {\n' +
+    '      "id": "923944ee-0726-4e75-adb3-0de977681ca6",\n' +
+    '      "title": "Backlog",\n' +
+    '      "order": 1\n' +
+    '    },\n' +
+    '    {\n' +
+    '      "id": "e16a1a52-abcd-405a-b35a-871e73343a1d",\n' +
+    '      "title": "Sprint",\n' +
+    '      "order": 2\n' +
+    '    }\n' +
+    '  ]\n' +
+    '}'
+}
+info: {
+  "id": "5542f674-dec8-4714-897d-300c56cb0283",
+  "title": "Autotest board",
+  "columns": [
+    {
+      "id": "b34b4e07-7d9e-4b96-99f1-ec0488fdd2cb",
+      "title": "Backlog",
+      "order": 1
+    },
+    {
+      "id": "d348612a-964a-43ce-be69-46ee903fb9cc",
+      "title": "Sprint",
+      "order": 2
+    }
+  ]
+}
+info: Body: '{\n' +
+  '  "id": "1e357c40-5de7-4abd-b625-bbc3d1547238",\n' +
+  '  "title": "Autotest board",\n' +
+  '  "columns": [\n' +
+  '    {\n' +
+  '      "id": "baafab58-9f4d-4877-9c0b-90cabed1381b",\n' +
+  '      "title": "Backlog",\n' +
+  '      "order": 1\n' +
+  '    },\n' +
+  '    {\n' +
+  '      "id": "26d0c97d-4f9a-4022-8074-d2f19b212abe",\n' +
+  '      "title": "Sprint",\n' +
+  '      "order": 2\n' +
+  '    }\n' +
+  '  ]\n' +
+  '}'
+info: {"request":{"url":"/boards","query parameters":"","request body":{"title":"Autotest board","columns":[{"title":"Backlog","order":1},{"title":"Sprint","order":2}]}},"response":{"status code":201}}
+{"level":"info","message":"{\"request\":{\"url\":\"/boards\",\"query parameters\":\"\",\"request body\":{\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}},\"response\":{\"status code\":201}}"}
+{"level":"info","message":"{\"request\":{\"url\":\"/boards\",\"query parameters\":\"\",\"request body\":{\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]}},\"response\":{\"status code\":201}}"}
+{
+  level: 'info',
+  message: '{"request":{"url":"/boards","query parameters":"","request body":{"title":"Autotest board","columns":[{"title":"Backlog","order":1},{"title":"Sprint","order":2}]}},"response":{"status code":201}}'
+}
+{
+  level: 'info',
+  message: '{"logType":"User request","logData":{"request":{"url":"/boards","query parameters":"","request body":{"title":"Autotest board","columns":[{"title":"Backlog","order":1},{"title":"Sprint","order":2}]}},"response":{"status code":201}}}'
+}
+{
+  level: 'info',
+  message: '{"logType":"User request","logData":{"request":{"url":"/boards","query parameters":"","request body":{"title":"Autotest board","columns":[{"title":"Backlog","order":1},{"title":"Sprint","order":2}]}},"response":{"status code":201}}}'
+}
+{
+  level: 'info',
+  message: '{"logType":"User request","logData":{"request":{"url":"/boards","query parameters":"","request body":{"title":"Autotest board","columns":[{"title":"Backlog","order":1},{"title":"Sprint","order":2}]}},"response":{"status code":201}}}'
+}
