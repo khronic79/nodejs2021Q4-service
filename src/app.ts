@@ -9,6 +9,7 @@ import { httpLogger } from './resources/logger/http-logger';
 import { router as userRouter } from './resources/users/user.router';
 import { router as boardRouter } from './resources/boards/board.router';
 import { router as taskRouter } from './resources/tasks/task.router';
+import { errorLogger } from './resources/logger/error-logger';
 
 export const app = new Koa();
 const router = new Router();
@@ -23,23 +24,14 @@ router.get('/', (ctx, next) => {
   next();
 });
 
-app.on('error', (err, ctx) => {
-  console.log({
-    'url': ctx.url,
-    'query parameters': ctx.querystring,
-    'request body': ctx.request.body,
-    'status code': err.status,
-    'body': err.message
-  });
-  console.log('ERROR!!!!', err);
-})
+app.on('error', errorLogger); // logging errors
 
 app
-  .use(httpLogger)
+  .use(httpLogger) // logging http request/response status
   .use(bodyParser({
-    onerror (err, ctx) {
-      console.log(err);
-      ctx.throw(422, 'json is not valid');
+    onerror (...arg) {
+      const ctx = arg[1];
+      ctx.throw(422, 'JSON is not valid');
     }
   }))
   .use(json())

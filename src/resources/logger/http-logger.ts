@@ -18,8 +18,10 @@ export async function httpLogger(ctx: ParameterizedContext, next: Next): Promise
       response
     }
   }
+  let level = 'info';
+  if (ctx.status === 404) level = 'warn';
   logger.log({
-    level: 'info',
+    level,
     message: JSON.stringify(log)
   });
 }

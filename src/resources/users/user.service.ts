@@ -2,7 +2,6 @@ import { ParameterizedContext } from 'koa';
 import { UserModel } from './user.model';
 import * as db  from './user.memory.repository';
 import { clearUserInTasks } from '../tasks/task.memory.repository';
-import { sendErrorMessage } from '../shared/utils';
 
 /**
  * Handle GET request to "/users" route and send set of users from repository
@@ -30,7 +29,7 @@ import { sendErrorMessage } from '../shared/utils';
   const { userId } = ctx['params'];
   const user = await db.getUser(userId);
   if (!user) {
-    sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
+    ctx.throw(404, `User with ID ${userId} does not exist`);
   } else {
     ctx.body = UserModel.toResponse(user);
     ctx.status = 200;
@@ -49,7 +48,7 @@ import { sendErrorMessage } from '../shared/utils';
   const user = ctx.request.body;
   const check = user.name && user.login && user.password ;
   if (!check) {
-    sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+    ctx.throw(404, 'There are issues with inbound data');
   } else {
     const newUser = await db.createUser(user);
     ctx.body = UserModel.toResponse(newUser);
@@ -73,7 +72,7 @@ import { sendErrorMessage } from '../shared/utils';
     ...userData
   });
   if (!updatedUser) {
-    sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
+    ctx.throw(404, `User with ID ${userId} does not exist`);
   } else {
     ctx.body = UserModel.toResponse(updatedUser);
     ctx.status = 200;
@@ -92,7 +91,7 @@ export async function deleteUser(ctx: ParameterizedContext): Promise<void> {
   const { userId } = ctx['params'];
   const deletedUser = await db.deleteUser(userId);
   if (!deletedUser) {
-    sendErrorMessage(ctx, `User with ID ${userId} does not exist`, 404);
+    ctx.throw(404, `User with ID ${userId} does not exist`);
   } else {
     await clearUserInTasks(userId);
     ctx.status = 204;

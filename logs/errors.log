@@ -1,0 +1,77 @@
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID 95edea5a-f0b7-49c1-b975-442da141731b does not existNotFoundError: Board with ID 95edea5a-f0b7-49c1-b975-442da141731b does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:32:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.266Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID dd538dd4-b93d-428c-83f1-3b61233e56df or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not existNotFoundError: Task with ID dd538dd4-b93d-428c-83f1-3b61233e56df or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.355Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 081e5887-dbe8-456f-8bbe-cd7b4846dbb3 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not existNotFoundError: Task with ID 081e5887-dbe8-456f-8bbe-cd7b4846dbb3 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.359Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 7d782980-ae30-4d5f-9d8d-26ad4a15b7f9 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not existNotFoundError: Task with ID 7d782980-ae30-4d5f-9d8d-26ad4a15b7f9 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.363Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 0f82e0fe-c35d-41b7-a1c7-90e6e6a11028 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not existNotFoundError: Task with ID 0f82e0fe-c35d-41b7-a1c7-90e6e6a11028 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.367Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 315c93f2-cc59-491e-85c7-7469bbfe8823 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not existNotFoundError: Task with ID 315c93f2-cc59-491e-85c7-7469bbfe8823 or Board with ID 76e671f4-e516-4309-a997-d60ca6a0ebc7 does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.371Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID e5ab7d74-c816-44ca-8566-2b14f766572d or Board with ID be82e4a7-ebd0-4c2f-993a-6af618203884 does not existNotFoundError: Task with ID e5ab7d74-c816-44ca-8566-2b14f766572d or Board with ID be82e4a7-ebd0-4c2f-993a-6af618203884 does not exist\n' +
+    '    at Object.throw (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (C:\\Users\\Rustam\\Documents\\cross-check\\test\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2021-12-25T22:25:45.867Z'
+}

@@ -1,7 +1,6 @@
 import { ParameterizedContext } from 'koa';
 import { TaskModel } from './task.model';
 import * as db from "./task.memory.repository";
-import { sendErrorMessage } from '../shared/utils';
 
 /**
  * Handle GET request to "/boards/:boardId/tasks" route and send set of tasks for board with boardId from repository
@@ -15,7 +14,7 @@ import { sendErrorMessage } from '../shared/utils';
   const { boardId } = ctx['params'];
   const tasks = await db.getAllTask(boardId);
   if (!tasks) {
-    sendErrorMessage(ctx, `Board with ID ${boardId} does not exist`, 404);
+    ctx.throw(404, `Board with ID ${boardId} does not exist`);
   } else {
     ctx.body = tasks.map(TaskModel.toResponse);
     ctx.status = 200;
@@ -34,7 +33,7 @@ import { sendErrorMessage } from '../shared/utils';
   const { boardId, taskId } = ctx['params'];
   const task = await db.getTask(boardId, taskId);
   if (!task) {
-    sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
+    ctx.throw(404, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`);
   } else {
     ctx.body = TaskModel.toResponse(task);
     ctx.status = 200;
@@ -54,11 +53,11 @@ import { sendErrorMessage } from '../shared/utils';
   const task = ctx.request.body;
   const check = (task.title !== undefined) && (task.order !== undefined) && (task.description !== undefined) && (task.userId !== undefined);
   if (!check) {
-    sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+    ctx.throw(400, 'There are issues with inbound data');
   } else {
     const newTask = await db.createTask(boardId, task);
     if (!newTask) {
-      sendErrorMessage(ctx, 'There are issues with inbound data', 400);
+      ctx.throw(400, 'There are issues with inbound data');
     } else {
         ctx.body = TaskModel.toResponse(newTask);
         ctx.status = 201;
@@ -82,7 +81,7 @@ import { sendErrorMessage } from '../shared/utils';
     ...userData
   });
   if (!updatedTask) {
-    sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
+    ctx.throw(404, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`);
   } else {
     ctx.body = TaskModel.toResponse(updatedTask);
     ctx.status = 200;
@@ -101,7 +100,7 @@ export async function deleteTask(ctx: ParameterizedContext): Promise<void> {
   const { boardId, taskId } = ctx['params'];
   const deletedTask = await db.deleteTask(boardId, taskId);
   if (!deletedTask) {
-    sendErrorMessage(ctx, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`, 404);
+    ctx.throw(404, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`);
   } else {
     ctx.status = 204;
   }
