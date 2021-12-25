@@ -8,7 +8,7 @@
 ## Downloading
 
 ```
-git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task5
+git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task6
 ```
 
 ## Installing NPM modules
