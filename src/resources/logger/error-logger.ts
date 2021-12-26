@@ -27,4 +27,5 @@ export function errorLogger(err: {status: number} & Error, ctx: ParameterizedCon
       level,
       message: err.toString() + (err.stack? err.stack.toString(): '')
   })
+  // throw new Error('Check Uncaught Exception');
 }

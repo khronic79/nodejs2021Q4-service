@@ -5,20 +5,24 @@ import { logger } from './resources/logger/logger';
 // logging uncaught exception
 process.on('uncaughtException', (err) => {
   logger.log({
-    level: 'error',
-    message: err.toString() + (err.stack? err.stack.toString(): '')
-  })
-  process.exit(1);
+    level: 'fatal',
+    message: `Uncaught Exception: ${err.toString()} ${err.stack? err.stack.toString(): ''}`
+  });
+  setTimeout(() => {
+    process.exit(1);
+  }, 2000);
 });
 
 // logging unhandled rejection
 process.on('unhandledRejection', (err) => {
   const error = err as Error;
   logger.log({
-    level: 'error',
-    message: error.toString() + (error.stack? error.stack.toString(): '')
+    level: 'fatal',
+    message: `Unhandled Rejection: ${ error.toString()} ${error.stack? error.stack.toString(): ''}`
   })
-  process.exit(1);
+  setTimeout(() => {
+    process.exit(1);
+  }, 2000);
 })
 
 app.listen(conf.PORT, () => {
@@ -33,3 +37,5 @@ app.listen(conf.PORT, () => {
     message: JSON.stringify(mess)
   });
 });
+
+// throw new Error('Check Uncaught Exception');

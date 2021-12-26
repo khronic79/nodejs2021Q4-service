@@ -11,19 +11,21 @@ if (!conf.LOG_LEVEL) {
 }
 
 const levels: Record<string, number> = {
-  'error': 0,
-  'warn': 1,
-  'info': 2,
-  'debug': 3,
-  'all': 4
+  'fatal': 0,
+  'error': 1,
+  'warn': 2,
+  'info': 3,
+  'debug': 4,
+  'all': 5
 };
 
 const levelsReverse: Record<string, string> = {
-  '0': 'error',
-  '1': 'warn',
-  '2': 'info',
-  '3': 'debug',
-  '4': 'all'
+  '0': 'fatal',
+  '1': 'error',
+  '2': 'warn',
+  '3': 'info',
+  '4': 'debug',
+  '5': 'all'
 };
 
 let level: string;
@@ -52,7 +54,7 @@ export const logger = createLogger({
     }),
     new transports.File({
       level: 'warn',
-      filename: './logs/errors.log'
+      filename: './logs/errors.log',
     }),
-  ]
+  ],
 });
