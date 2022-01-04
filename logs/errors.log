@@ -1,0 +1,77 @@
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID b08777ab-f785-4113-9e9d-cc317f9fc0ca does not existNotFoundError: Board with ID b08777ab-f785-4113-9e9d-cc317f9fc0ca does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:32:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\boards\\board.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:28.638Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID f061850b-f264-4c92-9c82-b439150644e5 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not existNotFoundError: Task with ID f061850b-f264-4c92-9c82-b439150644e5 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:28.741Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 52b57dd4-9b05-4b4b-9c6b-0507411b7e54 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not existNotFoundError: Task with ID 52b57dd4-9b05-4b4b-9c6b-0507411b7e54 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:28.751Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 47d85755-5e97-46f8-89a4-cfe66fc90eaf or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not existNotFoundError: Task with ID 47d85755-5e97-46f8-89a4-cfe66fc90eaf or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:28.756Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 0a7832d6-493a-44b0-8ae8-ef6aa3144903 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not existNotFoundError: Task with ID 0a7832d6-493a-44b0-8ae8-ef6aa3144903 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:28.763Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID cb822b84-0528-4977-a8df-8d60a9f4ff37 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not existNotFoundError: Task with ID cb822b84-0528-4977-a8df-8d60a9f4ff37 or Board with ID 769abc47-0d79-44c6-86d3-bde8baa7bd89 does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:28.769Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID a5c3b803-f5f6-4021-a574-46118b5c938c or Board with ID 2c9a68f2-bbb6-4d31-8e35-8b349f893706 does not existNotFoundError: Task with ID a5c3b803-f5f6-4021-a574-46118b5c938c or Board with ID 2c9a68f2-bbb6-4d31-8e35-8b349f893706 does not exist\n' +
+    '    at Object.throw (F:\\projects\\nodejs2021Q4-service\\node_modules\\koa\\lib\\context.js:97:11)\n' +
+    '    at F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:36:14\n' +
+    '    at step (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:63:23)\n' +
+    '    at Object.next (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:44:53)\n' +
+    '    at fulfilled (F:\\projects\\nodejs2021Q4-service\\src\\resources\\tasks\\task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-04T19:49:29.274Z'
+}
