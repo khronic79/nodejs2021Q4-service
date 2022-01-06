@@ -1,0 +1,203 @@
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID 12345 does not existNotFoundError: Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:17:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.001Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 12345 or Board with ID 12345 does not existNotFoundError: Task with ID 12345 or Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.210Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: User with ID 123 does not existNotFoundError: User with ID 123 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/users/user.service.ts:32:14\n' +
+    '    at step (/usr/app/src/resources/users/user.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/users/user.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/users/user.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.227Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID 12345 does not existNotFoundError: Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/boards/board.service.ts:32:14\n' +
+    '    at step (/usr/app/src/resources/boards/board.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/boards/board.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/boards/board.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.231Z'
+}
+{
+  level: 'error',
+  message: 'BadRequestError: There are issues with inbound dataBadRequestError: There are issues with inbound data\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:60:16\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.292Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 12345 or Board with ID 12345 does not existNotFoundError: Task with ID 12345 or Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:84:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.327Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: User with ID 12345 does not existNotFoundError: User with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/users/user.service.ts:75:14\n' +
+    '    at step (/usr/app/src/resources/users/user.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/users/user.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/users/user.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.355Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID 12345 does not existNotFoundError: Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/boards/board.service.ts:76:14\n' +
+    '    at step (/usr/app/src/resources/boards/board.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/boards/board.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/boards/board.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.370Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 12345 or Board with ID 12345 does not existNotFoundError: Task with ID 12345 or Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:103:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.374Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: User with ID 12345 does not existNotFoundError: User with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/users/user.service.ts:94:14\n' +
+    '    at step (/usr/app/src/resources/users/user.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/users/user.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/users/user.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.389Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID 12345 does not existNotFoundError: Board with ID 12345 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/boards/board.service.ts:95:14\n' +
+    '    at step (/usr/app/src/resources/boards/board.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/boards/board.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/boards/board.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:24.404Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 24a9cfdb-69e4-46cd-bc7f-6a3bac0fbf63 or Board with ID 949bf3d3-3bcb-4575-90d0-5b4a9001f69c does not existNotFoundError: Task with ID 24a9cfdb-69e4-46cd-bc7f-6a3bac0fbf63 or Board with ID 949bf3d3-3bcb-4575-90d0-5b4a9001f69c does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.333Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Board with ID 460e4f9f-d822-4a14-9b29-d118cdb87b60 does not existNotFoundError: Board with ID 460e4f9f-d822-4a14-9b29-d118cdb87b60 does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/boards/board.service.ts:32:14\n' +
+    '    at step (/usr/app/src/resources/boards/board.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/boards/board.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/boards/board.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.361Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 9976b6a9-fd82-4a91-a34a-09ff93b07ebd or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not existNotFoundError: Task with ID 9976b6a9-fd82-4a91-a34a-09ff93b07ebd or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.527Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID e45abe40-babf-4af1-9e49-3f40544e0879 or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not existNotFoundError: Task with ID e45abe40-babf-4af1-9e49-3f40544e0879 or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.542Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID fa68c359-a1e7-40e2-9e0e-edfb8042a130 or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not existNotFoundError: Task with ID fa68c359-a1e7-40e2-9e0e-edfb8042a130 or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.544Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 56bed0b1-0fd0-4d74-b75d-7a793a5f136d or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not existNotFoundError: Task with ID 56bed0b1-0fd0-4d74-b75d-7a793a5f136d or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.558Z'
+}
+{
+  level: 'warn',
+  message: 'NotFoundError: Task with ID 3c189cfc-a93a-4acd-913d-1ff4bafdbf15 or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not existNotFoundError: Task with ID 3c189cfc-a93a-4acd-913d-1ff4bafdbf15 or Board with ID a2763397-5d76-45ba-b56f-2f07ab2a0e9d does not exist\n' +
+    '    at Object.throw (/usr/app/node_modules/koa/lib/context.js:97:11)\n' +
+    '    at /usr/app/src/resources/tasks/task.service.ts:36:14\n' +
+    '    at step (/usr/app/src/resources/tasks/task.service.ts:63:23)\n' +
+    '    at Object.next (/usr/app/src/resources/tasks/task.service.ts:44:53)\n' +
+    '    at fulfilled (/usr/app/src/resources/tasks/task.service.ts:35:58)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  timestamp: '2022-01-06T11:30:25.572Z'
+}
+{
+  level: 'warn',
+  message: 'User use not right route',
+  timestamp: '2022-01-06T11:31:52.012Z'
+}

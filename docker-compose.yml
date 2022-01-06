@@ -1,7 +1,7 @@
 version: '3'
 services:
   nodeapp:
-    image: khronic79/node-tasks
+    build: .
     ports:
       - ${PORT}:${PORT}
     depends_on:
@@ -10,7 +10,7 @@ services:
       - PORT=${PORT}
     volumes:
       - ./src:/usr/app/src
-      - ./logs:/usr/app/logs
+      - logs:/usr/app/logs
     networks:
       - my_network
     restart: always
@@ -22,9 +22,14 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
     networks:
       - my_network
     restart: always
 networks:
   my_network:
     driver: bridge
+volumes:
+  dbdata:
+  logs:
