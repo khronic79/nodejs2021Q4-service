@@ -1,72 +1,42 @@
-# RS School REST service
+# Task 7. Docker basics
 
-## Prerequisites
+## How to start an application and check working
 
-- Git - [Download & Install Git](https://git-scm.com/downloads).
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-
-## Downloading
-
+1. Pull the repository to your local PC using git command
 ```
-git clone {repository URL}
+git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task7
 ```
-
-## Installing NPM modules
-
+2. Open a project folder in CLI and run the command:
 ```
-npm install
+docker-compose up
 ```
-
-## Running application
-
+3. **Important!** Please stop all applications wich use port 4000 and 5432 before building compose file. 
+4. You can check a started application in the brouser using link
 ```
-npm start
+localhost:4000
 ```
+In browser you can see text "Service is running!"
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
-
-## Testing
-
-After application running open new terminal and enter:
-
-To run all tests without authorization
-
+5. You can use this address in postman. 
+6. Also you can start tests exec docker command. In docker bash use command:
 ```
-npm test
+npm run test
 ```
-
-To run only one of all test suites (users, boards or tasks)
-
+7. If you want to stop application please enter Ctrl+C in terminal when you started app or enter 
 ```
-npm test <suite name>
+docker-compose stop
+```
+8. For correct app's starting please use only "docker-compose up" command.
+9. If you want to check database's working please start containers (docker-compose up) and enter command
+```
+docker container ls
+```
+Find database's container ID and start command
+```
+docker exec -it <CONTAINER ID> bash
+```
+In container's terminal you can type follow command
+```
+postgres --version
 ```
 
-To run all test with authorization
-
-```
-npm run test:auth
-```
-
-To run only specific test suite with authorization (users, boards or tasks)
-
-```
-npm run test:auth <suite name>
-```
-
-## Development
-
-If you're using VSCode, you can get a better developer experience from integration with [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
-
-### Auto-fix and format
-
-```
-npm run lint
-```
-
-### Debugging in VSCode
-
-Press <kbd>F5</kbd> to debug.
-
-For more information, visit: https://code.visualstudio.com/docs/editor/debugging
