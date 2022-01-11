@@ -55,6 +55,8 @@ export const logger = createLogger({
     new transports.File({
       level: 'warn',
       filename: './logs/errors.log',
+      handleExceptions: true,
+      handleRejections: true
     }),
   ],
 });

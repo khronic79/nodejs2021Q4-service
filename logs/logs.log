@@ -1076,3 +1076,8 @@
   message: '{"logType":"Server notification","logData":"App is running on http://localhost:4000"}',
   timestamp: '2022-01-06T11:36:56.909Z'
 }
+{
+  level: 'info',
+  message: '{"logType":"Server notification","logData":"App is running on http://localhost:4000"}',
+  timestamp: '2022-01-09T19:47:55.996Z'
+}
