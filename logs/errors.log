@@ -201,3 +201,746 @@
   message: 'User use not right route',
   timestamp: '2022-01-06T11:31:52.012Z'
 }
+{
+  error: Error: listen EADDRINUSE: address already in use :::4000
+      at Server.setupListenHandle [as _listen2] (node:net:1334:16)
+      at listenInCluster (node:net:1382:12)
+      at Server.listen (node:net:1469:7)
+      at Application.listen (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\node_modules\koa\lib\application.js:82:19)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:11:9
+      at step (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:33:23)
+      at Object.next (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:14:53)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:8:71
+      at new Promise (<anonymous>)
+      at __awaiter (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:4:12) {
+    code: 'EADDRINUSE',
+    errno: -4091,
+    syscall: 'listen',
+    address: '::',
+    port: 4000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::4000\n' +
+    'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  exception: true,
+  date: 'Wed Jan 12 2022 00:07:41 GMT+0300 (Москва, стандартное время)',
+  process: {
+    pid: 9436,
+    uid: null,
+    gid: null,
+    cwd: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service',
+    execPath: 'C:\\Program Files\\nodejs\\node.exe',
+    version: 'v16.13.1',
+    argv: [
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\ts-node\\dist\\bin.js',
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts'
+    ],
+    memoryUsage: {
+      rss: 234881024,
+      heapTotal: 194924544,
+      heapUsed: 168133712,
+      external: 9873904,
+      arrayBuffers: 588943
+    }
+  },
+  os: { loadavg: [ 0, 0, 0 ], uptime: 200430 },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1334,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1382,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 1469,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js',
+      function: 'Application.listen',
+      line: 82,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 9,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 23,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'step',
+      line: 33,
+      method: null,
+      native: false
+    },
+    {
+      column: 53,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'Object.next',
+      line: 14,
+      method: 'next',
+      native: false
+    },
+    {
+      column: 71,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 8,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'new Promise',
+      line: null,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: '__awaiter',
+      line: 4,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2022-01-11T21:07:42.023Z'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::4000
+      at Server.setupListenHandle [as _listen2] (node:net:1334:16)
+      at listenInCluster (node:net:1382:12)
+      at Server.listen (node:net:1469:7)
+      at Application.listen (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\node_modules\koa\lib\application.js:82:19)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:11:9
+      at step (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:33:23)
+      at Object.next (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:14:53)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:8:71
+      at new Promise (<anonymous>)
+      at __awaiter (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:4:12) {
+    code: 'EADDRINUSE',
+    errno: -4091,
+    syscall: 'listen',
+    address: '::',
+    port: 4000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::4000\n' +
+    'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  exception: true,
+  date: 'Wed Jan 12 2022 00:09:01 GMT+0300 (Москва, стандартное время)',
+  process: {
+    pid: 13872,
+    uid: null,
+    gid: null,
+    cwd: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service',
+    execPath: 'C:\\Program Files\\nodejs\\node.exe',
+    version: 'v16.13.1',
+    argv: [
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\ts-node\\dist\\bin.js',
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts'
+    ],
+    memoryUsage: {
+      rss: 236568576,
+      heapTotal: 194662400,
+      heapUsed: 168616336,
+      external: 9865712,
+      arrayBuffers: 595205
+    }
+  },
+  os: { loadavg: [ 0, 0, 0 ], uptime: 200510 },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1334,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1382,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 1469,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js',
+      function: 'Application.listen',
+      line: 82,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 9,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 23,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'step',
+      line: 33,
+      method: null,
+      native: false
+    },
+    {
+      column: 53,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'Object.next',
+      line: 14,
+      method: 'next',
+      native: false
+    },
+    {
+      column: 71,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 8,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'new Promise',
+      line: null,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: '__awaiter',
+      line: 4,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2022-01-11T21:09:01.707Z'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::4000
+      at Server.setupListenHandle [as _listen2] (node:net:1334:16)
+      at listenInCluster (node:net:1382:12)
+      at Server.listen (node:net:1469:7)
+      at Application.listen (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\node_modules\koa\lib\application.js:82:19)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:11:9
+      at step (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:33:23)
+      at Object.next (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:14:53)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:8:71
+      at new Promise (<anonymous>)
+      at __awaiter (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:4:12) {
+    code: 'EADDRINUSE',
+    errno: -4091,
+    syscall: 'listen',
+    address: '::',
+    port: 4000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::4000\n' +
+    'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  exception: true,
+  date: 'Wed Jan 12 2022 01:12:19 GMT+0300 (Москва, стандартное время)',
+  process: {
+    pid: 16756,
+    uid: null,
+    gid: null,
+    cwd: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service',
+    execPath: 'C:\\Program Files\\nodejs\\node.exe',
+    version: 'v16.13.1',
+    argv: [
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\ts-node\\dist\\bin.js',
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts'
+    ],
+    memoryUsage: {
+      rss: 235417600,
+      heapTotal: 196235264,
+      heapUsed: 161785368,
+      external: 2953969,
+      arrayBuffers: 153643
+    }
+  },
+  os: { loadavg: [ 0, 0, 0 ], uptime: 204308 },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1334,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1382,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 1469,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js',
+      function: 'Application.listen',
+      line: 82,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 9,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 23,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'step',
+      line: 33,
+      method: null,
+      native: false
+    },
+    {
+      column: 53,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'Object.next',
+      line: 14,
+      method: 'next',
+      native: false
+    },
+    {
+      column: 71,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 8,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'new Promise',
+      line: null,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: '__awaiter',
+      line: 4,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2022-01-11T22:12:19.920Z'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::4000
+      at Server.setupListenHandle [as _listen2] (node:net:1334:16)
+      at listenInCluster (node:net:1382:12)
+      at Server.listen (node:net:1469:7)
+      at Application.listen (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\node_modules\koa\lib\application.js:82:19)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:11:9
+      at step (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:33:23)
+      at Object.next (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:14:53)
+      at C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:8:71
+      at new Promise (<anonymous>)
+      at __awaiter (C:\Users\TEST_OS\OneDrive\Документы\nodejs-task\nodejs2021Q4-service\src\server.ts:4:12) {
+    code: 'EADDRINUSE',
+    errno: -4091,
+    syscall: 'listen',
+    address: '::',
+    port: 4000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::4000\n' +
+    'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::4000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1334:16)\n' +
+    '    at listenInCluster (node:net:1382:12)\n' +
+    '    at Server.listen (node:net:1469:7)\n' +
+    '    at Application.listen (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js:82:19)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:11:9\n' +
+    '    at step (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:33:23)\n' +
+    '    at Object.next (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:14:53)\n' +
+    '    at C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:8:71\n' +
+    '    at new Promise (<anonymous>)\n' +
+    '    at __awaiter (C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts:4:12)',
+  exception: true,
+  date: 'Wed Jan 12 2022 01:13:26 GMT+0300 (Москва, стандартное время)',
+  process: {
+    pid: 8464,
+    uid: null,
+    gid: null,
+    cwd: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service',
+    execPath: 'C:\\Program Files\\nodejs\\node.exe',
+    version: 'v16.13.1',
+    argv: [
+      'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\dist\\bin.js',
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts'
+    ],
+    memoryUsage: {
+      rss: 232058880,
+      heapTotal: 191254528,
+      heapUsed: 167909488,
+      external: 4887050,
+      arrayBuffers: 603397
+    }
+  },
+  os: { loadavg: [ 0, 0, 0 ], uptime: 204374 },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1334,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1382,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 1469,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\node_modules\\koa\\lib\\application.js',
+      function: 'Application.listen',
+      line: 82,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 9,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 23,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'step',
+      line: 33,
+      method: null,
+      native: false
+    },
+    {
+      column: 53,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: 'Object.next',
+      line: 14,
+      method: 'next',
+      native: false
+    },
+    {
+      column: 71,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: null,
+      line: 8,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'new Promise',
+      line: null,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts',
+      function: '__awaiter',
+      line: 4,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2022-01-11T22:13:26.279Z'
+}
+{
+  error: [96msrc/resources/boards/board.model.ts[0m:[93m2[0m:[93m17[0m - [91merror[0m[90m TS6133: [0m'Column' is declared but its value is never read.
+  
+  [7m2[0m import { Board, Column } from '../types/types';
+  [7m [0m [91m                ~~~~~~[0m
+  ,
+  level: 'error',
+  message: 'uncaughtException: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/resources/boards/board.model.ts\x1B[0m:\x1B[93m2\x1B[0m:\x1B[93m17\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'Column' is declared but its value is never read.\r\n" +
+    '\r\n' +
+    "\x1B[7m2\x1B[0m import { Board, Column } from '../types/types';\r\n" +
+    '\x1B[7m \x1B[0m \x1B[91m                ~~~~~~\x1B[0m\r\n' +
+    '\n' +
+    'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/resources/boards/board.model.ts\x1B[0m:\x1B[93m2\x1B[0m:\x1B[93m17\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'Column' is declared but its value is never read.\r\n" +
+    '\r\n' +
+    "\x1B[7m2\x1B[0m import { Board, Column } from '../types/types';\r\n" +
+    '\x1B[7m \x1B[0m \x1B[91m                ~~~~~~\x1B[0m\r\n' +
+    '\n' +
+    '    at createTSError (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:750:12)\n' +
+    '    at reportTSError (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:754:19)\n' +
+    '    at getOutput (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:941:36)\n' +
+    '    at Object.compile (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:1243:30)\n' +
+    '    at Module.m._compile (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:1370:30)\n' +
+    '    at Module._extensions..js (node:internal/modules/cjs/loader:1153:10)\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:1374:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:981:32)\n' +
+    '    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1005:19)',
+  stack: 'TSError: ⨯ Unable to compile TypeScript:\n' +
+    "\x1B[96msrc/resources/boards/board.model.ts\x1B[0m:\x1B[93m2\x1B[0m:\x1B[93m17\x1B[0m - \x1B[91merror\x1B[0m\x1B[90m TS6133: \x1B[0m'Column' is declared but its value is never read.\r\n" +
+    '\r\n' +
+    "\x1B[7m2\x1B[0m import { Board, Column } from '../types/types';\r\n" +
+    '\x1B[7m \x1B[0m \x1B[91m                ~~~~~~\x1B[0m\r\n' +
+    '\n' +
+    '    at createTSError (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:750:12)\n' +
+    '    at reportTSError (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:754:19)\n' +
+    '    at getOutput (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:941:36)\n' +
+    '    at Object.compile (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:1243:30)\n' +
+    '    at Module.m._compile (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:1370:30)\n' +
+    '    at Module._extensions..js (node:internal/modules/cjs/loader:1153:10)\n' +
+    '    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts:1374:12)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:981:32)\n' +
+    '    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1005:19)',
+  exception: true,
+  date: 'Wed Jan 12 2022 22:25:58 GMT+0300 (Москва, стандартное время)',
+  process: {
+    pid: 19504,
+    uid: null,
+    gid: null,
+    cwd: 'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service',
+    execPath: 'C:\\Program Files\\nodejs\\node.exe',
+    version: 'v16.13.1',
+    argv: [
+      'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\dist\\bin.js',
+      'C:\\Users\\TEST_OS\\OneDrive\\Документы\\nodejs-task\\nodejs2021Q4-service\\src\\server.ts'
+    ],
+    memoryUsage: {
+      rss: 223936512,
+      heapTotal: 187486208,
+      heapUsed: 165156680,
+      external: 8018634,
+      arrayBuffers: 320749
+    }
+  },
+  os: { loadavg: [ 0, 0, 0 ], uptime: 280727 },
+  trace: [
+    {
+      column: 12,
+      file: 'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts',
+      function: 'createTSError',
+      line: 750,
+      method: null,
+      native: false
+    },
+    {
+      column: 19,
+      file: 'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts',
+      function: 'reportTSError',
+      line: 754,
+      method: null,
+      native: false
+    },
+    {
+      column: 36,
+      file: 'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts',
+      function: 'getOutput',
+      line: 941,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts',
+      function: 'Object.compile',
+      line: 1243,
+      method: 'compile',
+      native: false
+    },
+    {
+      column: 30,
+      file: 'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts',
+      function: 'Module.m._compile',
+      line: 1370,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._extensions..js',
+      line: 1153,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'C:\\Users\\TEST_OS\\AppData\\Roaming\\npm\\node_modules\\ts-node\\src\\index.ts',
+      function: 'Object.require.extensions.<computed> [as .ts]',
+      line: 1374,
+      method: 'ts]',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 981,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._load',
+      line: 822,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1005,
+      method: 'require',
+      native: false
+    }
+  ],
+  timestamp: '2022-01-12T19:25:58.797Z'
+}

@@ -1,34 +1,33 @@
-import { Board, Column } from '../types/types';
+import { TaskModel } from '../tasks/task.model';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Board } from '../types/types';
 
 /**
  * Represents a board in the REST Service realization
  * @public
  */
+@Entity()
 export class BoardModel {
   /**
   * The unique identificator of the board.
   */
-  id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id?: string;
 
   /**
   * The title of the board.
   */
-  title: string;
+  @Column()
+  title?: string;
 
   /**
   * The array of columns.
   */
-  columns: Column[];
+  @Column()
+  columns?: String;
 
-  /**
-  * Initiates an instance of the class board's data
-  * @param board - the board's object of Board type for class's initialiation
-  */
-  constructor(board: Board) {
-    this.id = board.id;
-    this.title = board.title;
-    this.columns = board.columns;
-  }
+  @OneToMany(() => TaskModel, task => task.user)
+  tasks?: TaskModel[];
 
   /**
   * Filters board's data for response

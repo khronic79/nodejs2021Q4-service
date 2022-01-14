@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { TaskModel } from '../tasks/task.model';
 import { User } from '../types/types';
 
 /**
@@ -30,18 +31,10 @@ export class UserModel {
   */
   @Column()
   password?: string;
-  
-   /**
-   * Initiates an instance of the class user's data
-   * @param user - the user's object of User type for class's initialiation
-   */
-/*   constructor(user: User) {
-    this.id = user.id;
-    this.name = user.name;
-    this.login = user.login;
-    this.password = user.password;
-  } */
 
+  @OneToMany(() => TaskModel, task => task.user)
+  tasks?: TaskModel[];
+  
   /**
   * Filters user's data for response
   * @param user - the user's object

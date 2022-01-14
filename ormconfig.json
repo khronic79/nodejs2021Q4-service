@@ -1,0 +1,17 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "user",
+  "password": "password",
+  "database": "postgres_db",
+  "synchronize": false,
+  "entities": [
+    "./src/resources/users/user.model.ts",
+    "./src/resources/boards/board.model.ts",
+    "./src/resources/tasks/task.model.ts"
+  ],
+  "migrationsTableName": "migrations",
+  "migrations": ["./src/migration/*.ts"],
+  "cli": { "migrationsDir": "./src/migration" }
+}

@@ -41,6 +41,7 @@
     "import/prefer-default-export": "off",
     "tsdoc/syntax": "warn",
     "@typescript-eslint/no-explicit-any": "error",
-    "dot-notation": 0
+    "dot-notation": 0,
+    "class-methods-use-this": 0
   }
 }

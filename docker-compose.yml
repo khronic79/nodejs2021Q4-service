@@ -1,19 +1,19 @@
 version: '3'
 services:
-  nodeapp:
-    build: .
-    ports:
-      - ${PORT}:${PORT}
-    depends_on:
-      - postgres
-    environment:
-      - PORT=${PORT}
-    volumes:
-      - ./src:/usr/app/src
-      - logs:/usr/app/logs
-    networks:
-      - my_network
-    restart: always
+  #nodeapp:
+  #  build: .
+  #  ports:
+  #    - ${PORT}:${PORT}
+  #  depends_on:
+  #    - postgres
+  #  environment:
+  #    - PORT=${PORT}
+  #  volumes:
+  #    - ./src:/usr/app/src
+  #    - logs:/usr/app/logs
+  #  networks:
+  #    - my_network
+  #  restart: always
   postgres:
     build: ./db
     ports:
@@ -30,6 +30,8 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     restart: always
+    depends_on:
+      - postgres
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@linuxhint.com
       PGADMIN_DEFAULT_PASSWORD: secret
@@ -38,10 +40,12 @@ services:
       - "5050:5050"
     networks:
       - my_network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 networks:
   my_network:
     driver: bridge
 volumes:
   dbdata:
-  logs:
+  #logs:
   pgadmin-data:

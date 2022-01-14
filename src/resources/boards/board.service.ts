@@ -12,8 +12,8 @@ import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repo
  *
  */
  export async function getAllBoards(ctx: ParameterizedContext): Promise<void> {
-  const users = await db.getAllBoards();
-  ctx.body = users.map(BoardModel.toResponse);
+  const boards = await db.getAllBoards();
+  ctx.body = boards.map(BoardModel.toResponse);
   ctx.status = 200;
 }
 
