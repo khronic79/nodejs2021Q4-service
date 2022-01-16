@@ -1,7 +1,5 @@
 import { ParameterizedContext } from 'koa';
-import { BoardModel } from './board.model';
 import * as db from './board.memory.repository';
-import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repository';
 
 /**
  * Handle GET request to "/boards" route and send set of boards from repository
@@ -13,7 +11,7 @@ import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repo
  */
  export async function getAllBoards(ctx: ParameterizedContext): Promise<void> {
   const boards = await db.getAllBoards();
-  ctx.body = boards.map(BoardModel.toResponse);
+  ctx.body = boards;
   ctx.status = 200;
 }
 
@@ -31,7 +29,7 @@ import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repo
   if (!board) {
     ctx.throw(404, `Board with ID ${boardId} does not exist`);
   } else {
-    ctx.body = BoardModel.toResponse(board);
+    ctx.body = board;
     ctx.status = 200;
   }
 }
@@ -51,8 +49,7 @@ import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repo
     ctx.throw(400, 'There are issues with inbound data');
   } else {
     const newBoard = await db.createBoard(board);
-    await newBoardForTask(newBoard.id);
-    ctx.body = BoardModel.toResponse(newBoard);
+    ctx.body = newBoard;
     ctx.status = 201;
   }
 }
@@ -75,7 +72,7 @@ import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repo
   if (!updatedBoard) {
     ctx.throw(404, `Board with ID ${boardId} does not exist`);
   } else {
-    ctx.body = BoardModel.toResponse(updatedBoard);
+    ctx.body = updatedBoard;
     ctx.status = 200;
   }
 }
@@ -94,7 +91,6 @@ import { newBoardForTask, deleteAllTaskInBoard } from '../tasks/task.memory.repo
   if (!deletedBoard) {
     ctx.throw(404, `Board with ID ${boardId} does not exist`);
   } else {
-    await deleteAllTaskInBoard(boardId);
     ctx.status = 204;
   }
 }

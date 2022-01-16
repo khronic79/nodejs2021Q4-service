@@ -4,12 +4,13 @@
   "port": 5432,
   "username": "user",
   "password": "password",
-  "database": "postgres_db",
+  "database": "postgres",
   "synchronize": false,
   "entities": [
     "./src/resources/users/user.model.ts",
     "./src/resources/boards/board.model.ts",
-    "./src/resources/tasks/task.model.ts"
+    "./src/resources/tasks/task.model.ts",
+    "./src/resources/columns/column.model.ts"
   ],
   "migrationsTableName": "migrations",
   "migrations": ["./src/migration/*.ts"],

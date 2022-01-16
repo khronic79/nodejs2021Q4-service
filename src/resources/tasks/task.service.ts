@@ -1,5 +1,4 @@
 import { ParameterizedContext } from 'koa';
-import { TaskModel } from './task.model';
 import * as db from "./task.memory.repository";
 
 /**
@@ -16,7 +15,7 @@ import * as db from "./task.memory.repository";
   if (!tasks) {
     ctx.throw(404, `Board with ID ${boardId} does not exist`);
   } else {
-    ctx.body = tasks.map(TaskModel.toResponse);
+    ctx.body = tasks;
     ctx.status = 200;
   }
 }
@@ -35,7 +34,7 @@ import * as db from "./task.memory.repository";
   if (!task) {
     ctx.throw(404, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`);
   } else {
-    ctx.body = TaskModel.toResponse(task);
+    ctx.body = task;
     ctx.status = 200;
   }
 }
@@ -57,9 +56,9 @@ import * as db from "./task.memory.repository";
   } else {
     const newTask = await db.createTask(boardId, task);
     if (!newTask) {
-      ctx.throw(400, 'There are issues with inbound data');
+      ctx.throw(400, `There are issues with inbound data or there is not boardId ${boardId}`);
     } else {
-        ctx.body = TaskModel.toResponse(newTask);
+        ctx.body = newTask;
         ctx.status = 201;
     }
   }
@@ -73,7 +72,7 @@ import * as db from "./task.memory.repository";
  * @returns The promise void
  *
  */
- export async function updateTask(ctx: ParameterizedContext): Promise<void> {
+export async function updateTask(ctx: ParameterizedContext): Promise<void> {
   const { boardId, taskId } = ctx['params'];
   const userData = ctx.request.body;
   const updatedTask = await db.updateTask(boardId, {
@@ -83,7 +82,7 @@ import * as db from "./task.memory.repository";
   if (!updatedTask) {
     ctx.throw(404, `Task with ID ${taskId} or Board with ID ${boardId} does not exist`);
   } else {
-    ctx.body = TaskModel.toResponse(updatedTask);
+    ctx.body = updatedTask;
     ctx.status = 200;
   }
 }

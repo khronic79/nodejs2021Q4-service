@@ -1,7 +1,7 @@
-import { boardRepo } from '../db/board.db';
-import { createColumns } from '../columns/column.service';
+import { getRepository } from 'typeorm';
+import { BoardModel } from './board.model';
 import { Board, NewBoard, UpdatedBoard } from '../types/types';
-import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service.shared';
+// import { ColumnModel } from '../columns/column.model';
 
 /**
  * Return all boards from repository
@@ -9,8 +9,10 @@ import { getAll, getRecord, deleteRecord, createRecord } from '../shared/service
  * @returns The promise with array of all boards in repository
  *
  */
-export async function getAllBoards(): Promise<Board[]> {
-  return getAll(boardRepo);
+export async function getAllBoards(): Promise<BoardModel[]> {
+  const boardData = await getRepository(BoardModel)
+    .find({relations: ['columns']})
+  return boardData;
 }
 
 /**
@@ -21,8 +23,15 @@ export async function getAllBoards(): Promise<Board[]> {
  * @returns The promise with user's object of Board type or null if board with boardId does not exist
  *
  */
-export async function getBoard(boardId: string): Promise<Board | null> {
-  return getRecord(boardId, boardRepo);
+export async function getBoard(boardId: string): Promise<BoardModel | undefined> {
+  const result = await getRepository(BoardModel)
+    .findOne({
+      where: [
+        { id: boardId },
+      ],
+      relations: ['columns']
+    })
+  return result;
 }
 
 /**
@@ -33,12 +42,11 @@ export async function getBoard(boardId: string): Promise<Board | null> {
  * @returns The promise with created board's object of Board type or null if NewBoard object has not needed data
  *
  */
-export async function createBoard(board: NewBoard): Promise<Board> {
-  const newBoard = {
-    ...board
-  }
-  newBoard.columns = createColumns([], board.columns);
-  return createRecord(newBoard, boardRepo);
+export async function createBoard(newBoard: NewBoard): Promise<BoardModel> {
+  const insertResult = await getRepository(BoardModel)
+    .save(newBoard);
+  const board = insertResult;
+  return board;
 }
 
 /**
@@ -49,17 +57,20 @@ export async function createBoard(board: NewBoard): Promise<Board> {
  * @returns The promise with created board's object or null if NewBoard object has not needed data
  *
  */
-export async function updateBoard(board: UpdatedBoard): Promise<Board | null> {
-  if (!board.id) return Promise.resolve(null);
-  const currentBoard = boardRepo.get(board.id);
-  if (!currentBoard) return Promise.resolve(null);
-  const newRecord = {
-      id: board.id,
-      title: board.title? board.title: currentBoard.title,
-      columns: board.columns? board.columns: currentBoard.columns
-  }
-  boardRepo.set(board.id, newRecord);
-  return Promise.resolve(newRecord);
+export async function updateBoard(newBoard: UpdatedBoard): Promise<BoardModel | undefined> {
+  const board = await getRepository(BoardModel).findOne(newBoard.id, {
+    relations: ['columns']
+  });
+  if (!board) return undefined;
+  await getRepository(BoardModel)
+    .save(newBoard);
+  const updatedBoard = await getRepository(BoardModel).findOne({
+    where: [
+      { id: newBoard.id },
+    ],
+    relations: ['columns']
+  });
+  return updatedBoard;
 }
 
 /**
@@ -70,6 +81,13 @@ export async function updateBoard(board: UpdatedBoard): Promise<Board | null> {
  * @returns The promise with board's object of Board type or null if board with boardId does not exist
  *
  */
-export async function deleteBoard(boardId: string): Promise<Board | null> {
-  return deleteRecord(boardId, boardRepo);
+export async function deleteBoard(boardId: string): Promise<Board | undefined> {
+  const deletedResult = await getRepository(BoardModel)
+    .createQueryBuilder()
+    .delete()
+    .where("id = :id", { id: boardId })
+    .returning(['id', 'title', 'columns'])
+    .execute();
+  const board = deletedResult.raw[0] as Board | undefined;
+  return board;
 }

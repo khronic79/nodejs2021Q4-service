@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { UserModel } from '../users/user.model';
-import { Task } from '../types/types';
 import { BoardModel } from '../boards/board.model';
 
 /**
@@ -36,29 +35,32 @@ export class TaskModel {
   /**
   * The user is assigned to the task.
   */
-  @ManyToOne(() => UserModel, user => user.tasks)
-  user?: string;
+  @ManyToOne(() => UserModel, user => user.tasks, {onDelete: 'SET NULL'})
+  @JoinColumn({ name: 'userId' })
+  user?: UserModel;
 
   /**
   * The board contains the task.
   */
-  @ManyToOne(() => BoardModel, board => board.tasks)
-  board?: string;
+  @ManyToOne(() => BoardModel, board => board.tasks, {onDelete: 'CASCADE'})
+  @JoinColumn({ name: 'boardId' })
+  board?: BoardModel;
 
   /**
   * The column contains the task.
   */
-  @Column()
-  columnId?: string
+  @Column({
+    nullable: true
+  })
+  columnId?: string;
 
-  /**
-  * Filters task's data for response
-  * @param task - the task's object
-  * 
-  * @returns public task's object
-  */
-  static toResponse(task: Task) {
-    const { id, title, order, description, userId, boardId, columnId } = task;
-    return { id, title, order, description, userId, boardId, columnId };
-  }
+  @Column('uuid', {
+    nullable: true
+  })
+  userId?: string;
+
+  @Column('uuid', {
+    nullable: true
+  })
+  boardId?: string;
 }

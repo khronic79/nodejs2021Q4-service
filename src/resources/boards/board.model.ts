@@ -1,6 +1,6 @@
 import { TaskModel } from '../tasks/task.model';
+import { ColumnModel } from '../columns/column.model';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Board } from '../types/types';
 
 /**
  * Represents a board in the REST Service realization
@@ -23,20 +23,9 @@ export class BoardModel {
   /**
   * The array of columns.
   */
-  @Column()
-  columns?: String;
+  @OneToMany(() => ColumnModel, column => column.board, {cascade: true})
+  columns?: ColumnModel[];
 
-  @OneToMany(() => TaskModel, task => task.user)
+  @OneToMany(() => TaskModel, task => task.board, {cascade: ['remove', 'soft-remove']})
   tasks?: TaskModel[];
-
-  /**
-  * Filters board's data for response
-  * @param board - the board's object
-  * 
-  * @returns public board's object
-  */
-  static toResponse(board: Board) {
-    const { id, title, columns } = board;
-    return { id, title, columns };
-  }
 }

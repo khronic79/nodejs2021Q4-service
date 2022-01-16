@@ -1,7 +1,6 @@
 import { ParameterizedContext } from 'koa';
 import { UserModel } from './user.model';
 import * as db  from './user.memory.repository';
-import { clearUserInTasks } from '../tasks/task.memory.repository';
 
 /**
  * Handle GET request to "/users" route and send set of users from repository
@@ -13,7 +12,7 @@ import { clearUserInTasks } from '../tasks/task.memory.repository';
  */
  export async function getAllUsers(ctx: ParameterizedContext): Promise<void> {
   const users = await db.getAllUsers();
-  ctx.body = users.map(UserModel.toResponse);
+  ctx.body = users;
   ctx.status = 200;
 }
 
@@ -93,7 +92,6 @@ export async function deleteUser(ctx: ParameterizedContext): Promise<void> {
   if (!deletedUser) {
     ctx.throw(404, `User with ID ${userId} does not exist`);
   } else {
-    await clearUserInTasks(userId);
     ctx.status = 204;
   }
 }

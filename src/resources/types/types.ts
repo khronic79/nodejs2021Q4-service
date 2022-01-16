@@ -9,22 +9,22 @@ export type Task = {
 }
 
 export type NewTask = {
-  title: string | null;
+  title: string;
   order: number;
-  description: string | null;
-  userId: string | null;
-  boardId: string | null;
-  columnId: string | null
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string
 }
 
 export type UpdateTask = {
   id: string;
-  title?: string | null;
+  title?: string;
   order?: number;
-  description?: string | null;
-  userId?: string | null;
-  boardId?: string | null;
-  columnId?: string | null
+  description?: string;
+  userId?: string;
+  boardId?: string;
+  columnId?: string
 }
 
 export type User = {
@@ -66,7 +66,7 @@ export type Board = {
 
 export type NewBoard = {
   title: string;
-  columns: Column[];
+  columns: NewColumn[];
 };
 
 export type UpdatedBoard = {
