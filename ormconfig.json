@@ -1,6 +1,6 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "postgres",
   "port": 5432,
   "username": "user",
   "password": "password",
@@ -14,5 +14,6 @@
   ],
   "migrationsTableName": "migrations",
   "migrations": ["./src/migration/*.ts"],
-  "cli": { "migrationsDir": "./src/migration" }
+  "cli": { "migrationsDir": "./src/migration" },
+  "migrationsRun": true
 }
