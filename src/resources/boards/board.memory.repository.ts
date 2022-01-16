@@ -1,7 +1,6 @@
 import { getRepository } from 'typeorm';
 import { BoardModel } from './board.model';
 import { Board, NewBoard, UpdatedBoard } from '../types/types';
-// import { ColumnModel } from '../columns/column.model';
 
 /**
  * Return all boards from repository
@@ -10,8 +9,15 @@ import { Board, NewBoard, UpdatedBoard } from '../types/types';
  *
  */
 export async function getAllBoards(): Promise<BoardModel[]> {
+/*   const boardData = await getRepository(BoardModel)
+    .find({
+      relations: ['columns'],
+    }); */
   const boardData = await getRepository(BoardModel)
-    .find({relations: ['columns']})
+    .createQueryBuilder('board')
+    .leftJoinAndSelect('board.columns', 'column')
+    .orderBy('column.order', 'ASC')
+    .getMany();
   return boardData;
 }
 
@@ -24,14 +30,18 @@ export async function getAllBoards(): Promise<BoardModel[]> {
  *
  */
 export async function getBoard(boardId: string): Promise<BoardModel | undefined> {
-  const result = await getRepository(BoardModel)
-    .findOne({
-      where: [
-        { id: boardId },
-      ],
+/*   const result = await getRepository(BoardModel)
+    .findOne(boardId, {
       relations: ['columns']
-    })
-  return result;
+    });
+  return result; */
+  const boardData = await getRepository(BoardModel)
+    .createQueryBuilder('board')
+    .leftJoinAndSelect('board.columns', 'column')
+    .where('board.id = :id', { id: boardId })
+    .orderBy('column.order', 'ASC')
+    .getOne();
+  return boardData;
 }
 
 /**
@@ -64,12 +74,12 @@ export async function updateBoard(newBoard: UpdatedBoard): Promise<BoardModel | 
   if (!board) return undefined;
   await getRepository(BoardModel)
     .save(newBoard);
-  const updatedBoard = await getRepository(BoardModel).findOne({
-    where: [
-      { id: newBoard.id },
-    ],
-    relations: ['columns']
-  });
+  const updatedBoard = await getRepository(BoardModel)
+    .createQueryBuilder('board')
+    .leftJoinAndSelect('board.columns', 'column')
+    .where('board.id = :id', { id: newBoard.id })
+    .orderBy('column.order', 'ASC')
+    .getOne();
   return updatedBoard;
 }
 
