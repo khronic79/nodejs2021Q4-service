@@ -2,12 +2,12 @@ import { createConnection } from "typeorm";
 import { conf } from './common/config';
 import { app } from './app';
 import { logger } from './resources/logger/logger';
-import { dataBaseConnection } from "./db-connection";
+import { createAdminRecord } from './resources/users/user.service'
 import "reflect-metadata";
 
 createConnection()
-  .then(async connection => {
-    dataBaseConnection.connection = connection;
+  .then(async () => {
+    await createAdminRecord();
     app.listen(conf.PORT, () => {
       const mess = {
         logType: "Server notification",

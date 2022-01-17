@@ -1,4 +1,5 @@
 import { ParameterizedContext } from 'koa';
+import bcrypt from 'bcrypt';
 import { UserModel } from './user.model';
 import * as db  from './user.memory.repository';
 
@@ -45,7 +46,7 @@ import * as db  from './user.memory.repository';
  */
  export async function createUser(ctx: ParameterizedContext): Promise<void> {
   const user = ctx.request.body;
-  const check = user.name && user.login && user.password ;
+  const check = user.name && user.login && user.password;
   if (!check) {
     ctx.throw(404, 'There are issues with inbound data');
   } else {
@@ -94,4 +95,29 @@ export async function deleteUser(ctx: ParameterizedContext): Promise<void> {
   } else {
     ctx.status = 204;
   }
+}
+
+export async function createAdminRecord(): Promise<void> {
+  const result = await db.getUserByLogin('admin');
+  if (!result) {
+    const admin = {
+      login: 'admin',
+      password: 'admin',
+      name: 'admin'
+    };
+    await db.createUser(admin);
+  }
+}
+
+export async function loginUser(ctx: ParameterizedContext): Promise<void> {
+  const aData = ctx.request.body;
+  const check = aData.login && aData.password;
+  if (!check) ctx.throw(404, 'There are issues with inbound data');
+  const user = await db.getUserByLogin(aData.login);
+  if (!user) ctx.throw(403, 'There is no user with this login or password');
+  const checkHash = await bcrypt.compare(aData.password, user.password);
+  if (!checkHash) ctx.throw(403, 'There is no user with this login or password');
+
+  ctx.body = 'everything is ok!';
+  ctx.status = 200;
 }

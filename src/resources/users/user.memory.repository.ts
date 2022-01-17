@@ -1,4 +1,5 @@
 import {getRepository} from "typeorm";
+import bcrypt from 'bcrypt';
 import { User, NewUser, UpdateUser } from '../types/types';
 import { UserModel } from "./user.model";
 
@@ -56,10 +57,11 @@ export async function getUser(userId: string): Promise<User | undefined> {
  *
  */
 export async function createUser(newUser: NewUser): Promise<User> {
+  const hash = await bcrypt.hash(newUser.password, 10);
   const insertResult = await getRepository(UserModel)
     .createQueryBuilder()
     .insert()
-    .values(newUser)
+    .values({...newUser, password: hash})
     .returning(['id', 'name', 'login', 'password'])
     .execute();
   const user = insertResult.generatedMaps[0] as User;
@@ -115,3 +117,17 @@ export async function deleteUser(userId: string): Promise<User | undefined> {
   return user;
 }
 
+export async function getUserByLogin(login: string): Promise<User | undefined> {
+  const user = await getRepository(UserModel)
+    .findOne({
+      where: { login }
+    });
+  if (!user) return undefined;
+  const result: User = {
+    id: user?.id as string,
+    login: user?.login as string,
+    name: user?.name as string,
+    password: user?.password as string
+  };
+  return result;
+}
