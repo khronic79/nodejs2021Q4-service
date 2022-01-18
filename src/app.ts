@@ -6,6 +6,7 @@ import Router from 'koa-router';
 // import { koaSwagger } from 'koa2-swagger-ui';
 import json from 'koa-json';
 import { httpLogger } from './resources/logger/http-logger';
+import { authProxyUrl } from './resources/auth/auth.proxy.url';
 import { router as userRouter } from './resources/users/user.router';
 import { router as boardRouter } from './resources/boards/board.router';
 import { router as taskRouter } from './resources/tasks/task.router';
@@ -19,15 +20,15 @@ const router = new Router();
 
 // router.get('/doc', koaSwagger({ routePrefix: false, swaggerOptions: { spec } }));
 
-router.get('/', (ctx, next) => {
+router.get('/', (ctx) => {
   ctx.body = 'Service is running!';
-  next();
 });
 
 app.on('error', errorLogger); // logging errors
 
 app
-  .use(httpLogger) // logging http request/response status
+  .use(httpLogger)
+  .use(authProxyUrl)
   .use(bodyParser({
     onerror (...arg) {
       const ctx = arg[1];
