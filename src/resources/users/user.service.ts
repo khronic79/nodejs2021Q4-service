@@ -1,6 +1,8 @@
 import { ParameterizedContext } from 'koa';
+import * as jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { UserModel } from './user.model';
+import { conf } from '../../common/config';
 import * as db  from './user.memory.repository';
 
 /**
@@ -117,7 +119,10 @@ export async function loginUser(ctx: ParameterizedContext): Promise<void> {
   if (!user) ctx.throw(403, 'There is no user with this login or password');
   const checkHash = await bcrypt.compare(aData.password, user.password);
   if (!checkHash) ctx.throw(403, 'There is no user with this login or password');
-
-  ctx.body = 'everything is ok!';
+  const token = jwt.sign({ 
+      userId: user.id,
+      login: user.login
+    }, conf.JWT_SECRET_KEY);
+  ctx.body = { token };
   ctx.status = 200;
 }
