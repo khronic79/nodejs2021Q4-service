@@ -83,16 +83,18 @@ export async function updateUser(newUser: UpdateUser): Promise<User | null> {
     .where('user.id = :id', {id: newUser.id})
     .getOne();
   if (!currentUser) return null;
+  let hash: string = '';
+  if (newUser.password) hash = await bcrypt.hash(newUser.password, 10);
   const newRecord = {
     id: newUser.id,
     name: newUser.name? newUser.name: currentUser.name || '',
     login: newUser.login? newUser.login: currentUser.login || '',
-    password: newUser.password? newUser.password: currentUser.password  || ''
+    password: newUser.password? hash: currentUser.password  || ''
   };
   await getRepository(UserModel)
     .createQueryBuilder()
     .update(UserModel)
-    .set({name: newRecord.name, login: newRecord.login, password: newRecord.password})
+    .set(newRecord)
     .where('id = :id', {id: newRecord.id})
     .execute();
   return newRecord;
