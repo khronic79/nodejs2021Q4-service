@@ -1,1 +1,5 @@
 test/
+src/resources/tasks/task.model.ts
+src/resources/users/user.model.ts
+src/resources/boards/board.model.ts
+src/resources/columns/column.model.ts
