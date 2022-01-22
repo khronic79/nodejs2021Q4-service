@@ -8,7 +8,7 @@ git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task8
 ```
 2. Open a project folder in CLI and run the command:
 ```
-docker-compose up
+docker-compose up --build
 ```
 3. **Important!** Please stop all applications wich use port 4000 (node app), 5432 (postgres) and 5050 (pg admin) before building compose file. 
 4. You can check a started application in the brouser using link
