@@ -24,7 +24,7 @@ npm i
 ```
 7. Start tests by using:
 ```
-npm run test
+npm run test:auth
 ```
 8. If you want to stop application please enter Ctrl+C in terminal when you started app or enter 
 ```
