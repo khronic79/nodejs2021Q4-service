@@ -1,19 +1,19 @@
 version: '3'
 services:
-  nodeapp:
-    build: .
-    ports:
-      - ${PORT}:${PORT}
-    depends_on:
-      - postgres
-    environment:
-      - PORT=${PORT}
-    volumes:
-      - ./src:/usr/app/src
-      - logs:/usr/app/logs
-    networks:
-      - my_network
-    restart: always
+  #nodeapp:
+  #  build: .
+  #  ports:
+  #    - ${PORT}:${PORT}
+  #  depends_on:
+  #    - postgres
+  #  environment:
+  #    - PORT=${PORT}
+  #  volumes:
+  #    - ./src:/usr/app/src
+  #    - logs:/usr/app/logs
+  #  networks:
+  #    - my_network
+  #  restart: always
   postgres:
     build: ./db
     ports:
