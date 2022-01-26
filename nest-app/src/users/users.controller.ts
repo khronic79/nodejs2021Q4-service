@@ -8,31 +8,37 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './interfaces/users.dto';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private userService: UsersService) {}
+
   @Get()
-  findAll() {
-  
+  async findAll(): Promise<string> {
+    return await this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-
+  @Get(':userId')
+  async findOne(@Param('userId') userId: string): Promise<string> {
+    return await this.userService.findOne(userId);
   }
 
   @Post()
-  create(@Body() userDto: CreateUserDto) {
-
+  async create(@Body() createUserDto: CreateUserDto): Promise<CreateUserDto> {
+    return await this.userService.create(createUserDto);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() userDto: UpdateUserDto) {
-
+  @Put(':userId')
+  async update(
+    @Param('userId') userId: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise<UpdateUserDto> {
+    return await this.userService.update(userId, updateUserDto);
   }
 
-  @Delete('id')
-  remove(@Param('id') id: string) {
-
+  @Delete(':userId')
+  async remove(@Param('userId') userId: string): Promise<string> {
+    return await this.userService.remove(userId);
   }
 }
