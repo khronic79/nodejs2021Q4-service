@@ -1,4 +1,4 @@
-# Task 8. PostgreSQL & Typeorm
+# Task 10. NestJS
 
 ## How to start an application and check working
 
