@@ -1,72 +1,43 @@
-# RS School REST service
+# Task 10. NestJS
 
-## Prerequisites
+## How to start an application and check working
 
-- Git - [Download & Install Git](https://git-scm.com/downloads).
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-
-## Downloading
-
+1. Pull the repository to your local PC using git command
 ```
-git clone {repository URL}
+git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task10
 ```
-
-## Installing NPM modules
-
+2. Open a project folder in CLI and run the command:
 ```
-npm install
+docker-compose up --build
 ```
-
-## Running application
-
+If you want to change USE_FASTIFY env var you have to rebuild docker-compose file!!!
+3. **Important!** Please stop all applications wich use port 4000 (node app), 5432 (postgres) and 5050 (pg admin) before building compose file. 
+4. You can check a started application in the brouser using link
 ```
-npm start
+localhost:4000
 ```
+In browser you can see text "Service is running!"
 
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
-
-## Testing
-
-After application running open new terminal and enter:
-
-To run all tests without authorization
-
+5. You can use this address in postman. 
+6. Run command 
 ```
-npm test
+npm i
 ```
-
-To run only one of all test suites (users, boards or tasks)
-
+7. Start tests by using:
 ```
-npm test <suite name>
+npm run test
 ```
-
-To run all test with authorization
-
+8. If you want to stop application please enter Ctrl+C in terminal when you started app or enter 
 ```
-npm run test:auth
+docker-compose stop
 ```
-
-To run only specific test suite with authorization (users, boards or tasks)
-
+9. For correct app's starting please use only "docker-compose up" command.
+10. You can use PG Admin on adress:
 ```
-npm run test:auth <suite name>
+localhost:5050
 ```
+11. Login: admin@linuxhint.com and password: secret
+12. For DB connection use data in .env file.
+13. Uploaded files are saved in uploads directory. It is mounted in the same directory in docker container and you can see result of uploading in repository folder
 
-## Development
 
-If you're using VSCode, you can get a better developer experience from integration with [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
-
-### Auto-fix and format
-
-```
-npm run lint
-```
-
-### Debugging in VSCode
-
-Press <kbd>F5</kbd> to debug.
-
-For more information, visit: https://code.visualstudio.com/docs/editor/debugging
