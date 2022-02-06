@@ -10,6 +10,7 @@ git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task9
 ```
 docker-compose up --build
 ```
+If you want to change USE_FASTIFY env var you have to rebuild docker-compose file!!!
 3. **Important!** Please stop all applications wich use port 4000 (node app), 5432 (postgres) and 5050 (pg admin) before building compose file. 
 4. You can check a started application in the brouser using link
 ```
