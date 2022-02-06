@@ -9,7 +9,7 @@ import { AppModule } from './app.module';
 import FastifyFormidable from 'fastify-formidable';
 
 async function bootstrap() {
-  let app;
+  let app: NestExpressApplication | NestFastifyApplication;
   const platform = process.env['PLATFORM'];
   switch (platform) {
     case 'express': {
@@ -26,6 +26,7 @@ async function bootstrap() {
     }
   }
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
-  await app.listen(4000);
+  const PORT = process.env['PORT'];
+  await app.listen(PORT, '0.0.0.0');
 }
 bootstrap();
