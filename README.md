@@ -4,7 +4,7 @@
 
 1. Pull the repository to your local PC using git command
 ```
-git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task9
+git clone https://github.com/khronic79/nodejs2021Q4-service.git -b task10
 ```
 2. Open a project folder in CLI and run the command:
 ```
