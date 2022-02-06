@@ -38,5 +38,6 @@ localhost:5050
 ```
 11. Login: admin@linuxhint.com and password: secret
 12. For DB connection use data in .env file.
+13. Uploaded files are saved in uploads directory. It is mounted in the same directory in docker container and you can see result of uploading in repository folder
 
 
