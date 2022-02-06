@@ -6,9 +6,11 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  ParseUUIDPipe,
   Post,
   Put,
   UseGuards,
+  ValidationPipe,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateTaskDto, UpdateTaskDto } from './interfaces/tasks.dto';
@@ -20,14 +22,14 @@ export class TasksController {
   constructor(private taskService: TasksService) {}
 
   @Get()
-  async findAll(@Param('boardId') boardId: string) {
+  async findAll(@Param('boardId', ParseUUIDPipe) boardId: string) {
     return await this.taskService.findAll(boardId);
   }
 
   @Get(':taskId')
   async findOne(
-    @Param('boardId') boardId: string,
-    @Param('taskId') taskId: string,
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Param('taskId', ParseUUIDPipe) taskId: string,
   ) {
     const result = await this.taskService.findOne(boardId, taskId);
     if (!result)
@@ -43,17 +45,17 @@ export class TasksController {
 
   @Post()
   async create(
-    @Param('boardId') boardId: string,
-    @Body() createTaskDto: CreateTaskDto,
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Body(new ValidationPipe()) createTaskDto: CreateTaskDto,
   ) {
     return await this.taskService.create(boardId, createTaskDto);
   }
 
   @Put(':taskId')
   async update(
-    @Param('boardId') boardId: string,
-    @Param('taskId') taskId: string,
-    @Body() updateTaskDto: UpdateTaskDto,
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Param('taskId', ParseUUIDPipe) taskId: string,
+    @Body(new ValidationPipe()) updateTaskDto: UpdateTaskDto,
   ) {
     const result = await this.taskService.update(
       boardId,
@@ -73,8 +75,8 @@ export class TasksController {
 
   @Delete(':taskId')
   async remove(
-    @Param('boardId') boardId: string,
-    @Param('taskId') taskId: string,
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Param('taskId', ParseUUIDPipe) taskId: string,
   ) {
     const result = await this.taskService.remove(boardId, taskId);
     if (!result)

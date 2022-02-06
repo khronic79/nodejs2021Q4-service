@@ -1,4 +1,4 @@
-export interface ColumnDto {
+export class ColumnDto {
   title: string;
   order: number;
 }

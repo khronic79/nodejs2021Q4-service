@@ -15,7 +15,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this.configService.get('POSTGRES_PASSWORD'),
       database: this.configService.get('POSTGRES_DB'),
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
+      migrationsTableName: 'migrations',
+      migrations: [__dirname + '/migration/*.js'],
+      cli: { migrationsDir: __dirname + '/migration' },
+      migrationsRun: true,
     };
   }
 }

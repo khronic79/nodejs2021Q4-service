@@ -6,9 +6,11 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  ParseUUIDPipe,
   Post,
   Put,
   UseGuards,
+  ValidationPipe,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { BoardsService } from './boards.service';
@@ -25,7 +27,7 @@ export class BoardsController {
   }
 
   @Get(':boardId')
-  async findOne(@Param('boardId') boardId: string) {
+  async findOne(@Param('boardId', ParseUUIDPipe) boardId: string) {
     const result = await this.boardsService.findOne(boardId);
     if (!result)
       throw new HttpException(
@@ -39,12 +41,15 @@ export class BoardsController {
   }
 
   @Post()
-  async create(@Body() boardDto: BoardDto) {
+  async create(@Body(new ValidationPipe()) boardDto: BoardDto) {
     return await this.boardsService.create(boardDto);
   }
 
   @Put(':boardId')
-  async update(@Param('boardId') boardId: string, @Body() boardDto: BoardDto) {
+  async update(
+    @Param('boardId', ParseUUIDPipe) boardId: string,
+    @Body(new ValidationPipe()) boardDto: BoardDto,
+  ) {
     const result = await this.boardsService.update(boardId, boardDto);
     if (!result)
       throw new HttpException(
@@ -58,7 +63,7 @@ export class BoardsController {
   }
 
   @Delete(':boardId')
-  async remove(@Param('boardId') boardId: string) {
+  async remove(@Param('boardId', ParseUUIDPipe) boardId: string) {
     const result = await this.boardsService.remove(boardId);
     if (!result)
       throw new HttpException(

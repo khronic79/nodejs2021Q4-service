@@ -6,9 +6,11 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  ParseUUIDPipe,
   Post,
   Put,
   UseGuards,
+  ValidationPipe,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserDto, UpdateUserDto } from './interfaces/users.dto';
@@ -25,7 +27,7 @@ export class UsersController {
   }
 
   @Get(':userId')
-  async findOne(@Param('userId') userId: string) {
+  async findOne(@Param('userId', ParseUUIDPipe) userId: string) {
     const result = await this.userService.findOne(userId);
     if (!result)
       throw new HttpException(
@@ -39,14 +41,14 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
     return await this.userService.create(createUserDto);
   }
 
   @Put(':userId')
   async update(
-    @Param('userId') userId: string,
-    @Body() updateUserDto: UpdateUserDto,
+    @Param('userId', ParseUUIDPipe) userId: string,
+    @Body(new ValidationPipe()) updateUserDto: UpdateUserDto,
   ) {
     const result = await this.userService.update(userId, updateUserDto);
     if (!result)
@@ -61,7 +63,7 @@ export class UsersController {
   }
 
   @Delete(':userId')
-  async remove(@Param('userId') userId: string) {
+  async remove(@Param('userId', ParseUUIDPipe) userId: string) {
     const result = await this.userService.remove(userId);
     if (!result)
       throw new HttpException(
