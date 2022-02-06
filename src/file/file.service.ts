@@ -23,9 +23,11 @@ export class FileService {
   }
 
   async uploadFile(req) {
-    const platform = this.configService.get('PLATFORM');
-    if (platform === 'fastify') {
+    const USE_FASTIFY = this.configService.get('USE_FASTIFY');
+    console.log(USE_FASTIFY);
+    if (USE_FASTIFY === 'true') {
       const request = req.raw;
+      console.log(USE_FASTIFY);
       return await this.saveData(request);
     } else {
       return await this.saveData(req);
